@@ -6,13 +6,12 @@ import {SettingsButton, ImportButton, ExportButton, AddButton} from './Buttons'
 
 function App() {
   const [blurOn, setBlurOn] = useState(false);
-
   const [addMenuOn, setAddMenuOn] = useState(false);
 
   return (
     <>
       {blurOn && <div className = "blur">
-        {addMenuOn && <AddMenu></AddMenu>}
+        {addMenuOn && <AddMenu setBlurOn={setBlurOn} setAddMenuOn={setAddMenuOn}></AddMenu>}
       </div>}
 
       <div className = "main-container">

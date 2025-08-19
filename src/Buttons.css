@@ -2,9 +2,6 @@
     height: 50px;
     width: 50px;
     margin-left: 20px;
-}
-
-.button {
     transition: filter 0.2s;
 }
 

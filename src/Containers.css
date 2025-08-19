@@ -23,5 +23,64 @@
 .add-menu{
     width: 900px;
     height: 600px;
-    background-color: cyan;
+    background-color: rgb(62, 62, 62);
+}
+
+.add-menu-header{
+    height: 10%;
+    width: 100%;
+    display: flex;
+}
+
+.add-menu-tittle{
+    height: 100%;
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.close-add-menu{
+    height: 100%;
+    width: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.closeButton{
+    width: 30px;
+    height: 30px;
+    transition: filter 0.2s;
+}
+
+.closeButton:hover {
+    filter: invert(48%) sepia(100%) saturate(5000%) hue-rotate(-15deg) brightness(85%) contrast(120%);
+}
+
+
+.add-menu-body{
+    height: 90%;
+    width: 100%;
+}
+
+.add-menu-1-section, .add-menu-2-section, .add-menu-3-section, .add-menu-4-section{
+    height: 22.5%;
+    width: 100%;
+    display: flex;
+}
+
+.add-menu-1-section-text, .add-menu-1-section-form, 
+.add-menu-2-section-text, .add-menu-2-section-form,
+.add-menu-3-section-text, .add-menu-3-section-form, 
+.add-menu-4-section-text, .add-menu-4-section-form{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-family: "Montserrat", sans-serif;
 }
