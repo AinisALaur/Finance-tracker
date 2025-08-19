@@ -11,3 +11,7 @@ html, body {
 .main-container{
   display: flex;
 }
+
+.food-container, .statis-container{
+  border-left: solid;
+}
