@@ -19,3 +19,9 @@
     height: 100%;
     border-bottom: solid;
 }
+
+.add-menu{
+    width: 900px;
+    height: 600px;
+    background-color: cyan;
+}

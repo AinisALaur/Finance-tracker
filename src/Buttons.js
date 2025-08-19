@@ -5,42 +5,39 @@ import importIcon from './import.png';
 import exportIcon from './export.png';
 import addIcon from './add.png';
 
-function SettingsButton(){
+function SettingsButton({ setBlurOn }){
+
+    function allertSettings(){
+        alert("Settings");
+    }
+
     return(
         <>
-            <a>
-                <img src={settingsIcon} alt="Settings" className = "button"/>
-            </a>
+            <img src={settingsIcon} alt="Settings" className = "button" onClick={() => setBlurOn(prev => !prev)}/>
         </> 
     );
 }
 
-function ImportButton(){
+function ImportButton({ setBlurOn }){
     return(
         <>
-            <a>
-                <img src={importIcon} alt="Import" className = "button"/>
-            </a>
+            <img src={importIcon} alt="Import" className = "button" onClick={() => setBlurOn(prev => !prev)}/>
         </> 
     );
 }
 
-function ExportButton(){
+function ExportButton({ setBlurOn }){
     return(
         <>
-            <a>
-                <img src={exportIcon} alt="Export" className = "button"/>
-            </a>
+            <img src={exportIcon} alt="Export" className = "button" onClick={() => setBlurOn(prev => !prev)}/>
         </> 
     );
 }
 
-function AddButton(){
+function AddButton({ setBlurOn, setAddMenuOn }){
     return(
         <>
-            <a>
-                <img src={addIcon} alt="Add" className = "button"/>
-            </a>
+            <img src={addIcon} alt="Add" className = "button" onClick={() => {setBlurOn(prev => !prev); setAddMenuOn(prev => !prev)}}/>
         </> 
     );
 }

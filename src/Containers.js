@@ -24,4 +24,12 @@ function Container({ children, className }) {
   );
 }
 
-export { Container, TextBox, DataContainer };
+function AddMenu(){
+    return(
+        <div className = "add-menu">
+
+        </div>
+    );
+}
+
+export { Container, TextBox, DataContainer, AddMenu };

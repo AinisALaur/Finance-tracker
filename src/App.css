@@ -1,8 +1,25 @@
-html, body { 
+html, body{ 
     height: 100%;
     margin: 0;
     padding: 0;
 }
+
+.blur {
+  position: fixed;
+  top: 0;            
+  left: 0;            
+  width: 100vw;         
+  height: 100vh;    
+  backdrop-filter: blur(5px);
+  z-index: 9999;
+  pointer-events: all; 
+
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 #root, .main-container {
   height: 95%;
