@@ -1,9 +1,8 @@
 import './Containers.css'
 
-function DataContainer(){
+function DataContainer({ className }){
     return(
-        <div className = "data-container">
-
+        <div className = {`data-container ${className || ""}`}>
 
         </div>
     );
