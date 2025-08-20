@@ -14,32 +14,41 @@ function Container({ children, className }) {
   return <div className={`my-container ${className || ""}`}>{children}</div>;
 }
 
-function AddMenu({ setBlurOn, setAddMenuOn }) {
+function AddMenu({ setBlurOn, setAddMenuOn, onCreateInstance }) {
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
+  const [author, setAuthor] = useState("");
 
   const handleChangeCategory = (e) => {
     setCategory(e.target.value);
     setSubCategory("");
     setAmount("");
     setDate("");
+    setAuthor("");
   };
 
   const handleChangeSubCategory = (e) => {
     setSubCategory(e.target.value);
     setAmount("");
     setDate("");
+    setAuthor("");
   };
 
   const handleChangeAmount = (e) => {
     setAmount(e.target.value);
     setDate("");
+    setAuthor("");
   };
 
   const handleChangeDate = (e) => {
     setDate(e.target.value);
+    setAuthor("");
+  };
+
+  const handleChangeAuthor = (e) => {
+    setAuthor(e.target.value);
   };
 
   return (
@@ -135,11 +144,27 @@ function AddMenu({ setBlurOn, setAddMenuOn }) {
         )}
 
         {date && (
+          <div className="add-menu-5-section">
+            <div className="add-menu-5-section-text">
+              Select person who paid
+            </div>
+            <div className="add-menu-5-section-form">
+              <select value={author} onChange={handleChangeAuthor}>
+                <option value="">--Not selected--</option>
+                <option value="ainis">Ainis</option>
+                <option value="emile">Emile</option>
+              </select>
+            </div>
+          </div>
+        )}
+
+        {author && (
           <div className="add-menu-footer">
             <button
               type="button"
               onClick={() => {
-                createInstance(category, subCategory, amount, date);
+                onCreateInstance(category, subCategory, amount, date, author);
+
                 setBlurOn((prev) => !prev);
                 setAddMenuOn((prev) => !prev);
               }}
@@ -171,10 +196,6 @@ function Instance({ className, name, author, date, amount }) {
       <div className="instance-amount">{amount}</div>
     </div>
   );
-}
-
-function createInstance(category, subCategory, amount, date) {
-  console.log(category, subCategory, amount, date);
 }
 
 export { Container, TextBox, DataContainer, AddMenu, Instance };
