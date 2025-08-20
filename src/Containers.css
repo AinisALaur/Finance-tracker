@@ -62,12 +62,12 @@
 
 
 .add-menu-body{
-    height: 90%;
+    height: 70%;
     width: 100%;
 }
 
 .add-menu-1-section, .add-menu-2-section, .add-menu-3-section, .add-menu-4-section{
-    height: 22.5%;
+    height: 25%;
     width: 100%;
     display: flex;
 }
@@ -83,4 +83,12 @@
     align-items: center;
     font-size: 30px;
     font-family: "Montserrat", sans-serif;
+}
+
+.add-menu-footer{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

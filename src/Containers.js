@@ -1,5 +1,6 @@
 import './Containers.css'
 import closeIcon from './close.png';
+import { useState } from "react";
 
 function DataContainer({ className }){
     return(
@@ -26,6 +27,34 @@ function Container({ children, className }) {
 }
 
 function AddMenu({ setBlurOn, setAddMenuOn }){
+    const [category, setCategory] = useState("");
+    const [subCategory, setSubCategory] = useState("");
+    const [amount, setAmount] = useState("");
+    const [date, setDate] = useState("");
+
+    const handleChangeCategory = (e) => {
+        setCategory(e.target.value);
+        setSubCategory("");
+        setAmount("");
+        setDate("");
+    };
+
+    const handleChangeSubCategory = (e) => {
+        setSubCategory(e.target.value);
+        setAmount("");
+        setDate("");
+    };
+
+    const handleChangeAmount = (e) => {
+        setAmount(e.target.value);
+        setDate("");
+    };
+
+    const handleChangeDate = (e) =>{
+        setDate(e.target.value);
+    };
+
+
     return(
         <div className = "add-menu">
 
@@ -40,16 +69,19 @@ function AddMenu({ setBlurOn, setAddMenuOn }){
                 <div className = "add-menu-1-section">
                     <div className = "add-menu-1-section-text">Select instance section</div>
                     <div className = "add-menu-1-section-form">
-                        <select>
+                        <select value={category} onChange={handleChangeCategory}>
+                            <option value="">--Not selected--</option>
                             <option value="utilities">Utilities</option>
                             <option value="food">Food</option>
                         </select>
                     </div>
                 </div>
-                <div className = "add-menu-2-section">
-                    <div className = "add-menu-2-section-text">Select a type/store</div>
+
+                {category ===  "food" && <div className = "add-menu-2-section">
+                    <div className = "add-menu-2-section-text">Select a grocery store</div>
                     <div className = "add-menu-2-section-form">
-                        <select>
+                        <select value={subCategory} onChange={handleChangeSubCategory}>
+                            <option value="">--Not selected--</option>
                             <option value="lidl">Lidl</option>
                             <option value="maxima">Maxima</option>
                             <option value="iki">IKI</option>
@@ -57,14 +89,39 @@ function AddMenu({ setBlurOn, setAddMenuOn }){
                         </select>
                     </div>
                 </div>
-                <div className = "add-menu-3-section">
+                }
+
+                {category ===  "utilities" && <div className = "add-menu-2-section">
+                    <div className = "add-menu-2-section-text">Select a type of utility</div>
+                    <div className = "add-menu-2-section-form">
+                        <select value={subCategory} onChange={handleChangeSubCategory}>
+                            <option value="">--Not selected--</option>
+                            <option value="hot-water">Hot water</option>
+                            <option value="cold-water">Cold water</option>
+                            <option value="electricity">Electricity</option>
+                            <option value="gas">Gas</option>
+                        </select>
+                    </div>
+                </div>
+                }
+
+                {subCategory && <div className = "add-menu-3-section">
                     <div className = "add-menu-3-section-text">Enter spent sum</div>
-                    <div className = "add-menu-3-section-form"><input type = "text"></input></div>
-                </div>
-                <div className = "add-menu-4-section">
+                    <div className = "add-menu-3-section-form"><input type = "text" placeholder="-€"
+                    value = {amount} onChange = {handleChangeAmount}></input></div>
+                </div>}
+
+
+                {amount.trim() !== "" && <div className = "add-menu-4-section">
                     <div className = "add-menu-4-section-text">Date of spending</div>
-                    <div className = "add-menu-4-section-form"><input type="date"></input></div>
-                </div>
+                    <div className = "add-menu-4-section-form"><input type="date" 
+                    value = {date} onChange = {handleChangeDate}></input></div>
+                </div>}
+
+                {date && <div className = "add-menu-footer">
+                    <button>Submit</button>
+                </div>}
+
             </div>
         </div>
     );
