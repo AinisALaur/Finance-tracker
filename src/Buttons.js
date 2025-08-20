@@ -6,10 +6,6 @@ import exportIcon from "./export.png";
 import addIcon from "./add.png";
 
 function SettingsButton({ setBlurOn }) {
-  function allertSettings() {
-    alert("Settings");
-  }
-
   return (
     <>
       <img
