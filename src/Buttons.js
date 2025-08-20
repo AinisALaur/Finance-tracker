@@ -1,45 +1,67 @@
-import './Buttons.css'
+import "./Buttons.css";
 
-import settingsIcon from './settings-cogwheel-button.png';
-import importIcon from './import.png';
-import exportIcon from './export.png';
-import addIcon from './add.png';
+import settingsIcon from "./settings-cogwheel-button.png";
+import importIcon from "./import.png";
+import exportIcon from "./export.png";
+import addIcon from "./add.png";
 
-function SettingsButton({ setBlurOn }){
+function SettingsButton({ setBlurOn }) {
+  function allertSettings() {
+    alert("Settings");
+  }
 
-    function allertSettings(){
-        alert("Settings");
-    }
-
-    return(
-        <>
-            <img src={settingsIcon} alt="Settings" className = "button" onClick={() => setBlurOn(prev => !prev)}/>
-        </> 
-    );
+  return (
+    <>
+      <img
+        src={settingsIcon}
+        alt="Settings"
+        className="button"
+        onClick={() => setBlurOn((prev) => !prev)}
+      />
+    </>
+  );
 }
 
-function ImportButton({ setBlurOn }){
-    return(
-        <>
-            <img src={importIcon} alt="Import" className = "button" onClick={() => setBlurOn(prev => !prev)}/>
-        </> 
-    );
+function ImportButton({ setBlurOn }) {
+  return (
+    <>
+      <img
+        src={importIcon}
+        alt="Import"
+        className="button"
+        onClick={() => setBlurOn((prev) => !prev)}
+      />
+    </>
+  );
 }
 
-function ExportButton({ setBlurOn }){
-    return(
-        <>
-            <img src={exportIcon} alt="Export" className = "button" onClick={() => setBlurOn(prev => !prev)}/>
-        </> 
-    );
+function ExportButton({ setBlurOn }) {
+  return (
+    <>
+      <img
+        src={exportIcon}
+        alt="Export"
+        className="button"
+        onClick={() => setBlurOn((prev) => !prev)}
+      />
+    </>
+  );
 }
 
-function AddButton({ setBlurOn, setAddMenuOn }){
-    return(
-        <>
-            <img src={addIcon} alt="Add" className = "button" onClick={() => {setBlurOn(prev => !prev); setAddMenuOn(prev => !prev)}}/>
-        </> 
-    );
+function AddButton({ setBlurOn, setAddMenuOn }) {
+  return (
+    <>
+      <img
+        src={addIcon}
+        alt="Add"
+        className="button"
+        onClick={() => {
+          setBlurOn((prev) => !prev);
+          setAddMenuOn((prev) => !prev);
+        }}
+      />
+    </>
+  );
 }
 
 export { SettingsButton, ImportButton, ExportButton, AddButton };

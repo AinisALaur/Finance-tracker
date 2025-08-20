@@ -1,40 +1,41 @@
-html, body{ 
-    height: 100%;
-    margin: 0;
-    padding: 0;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .blur {
   position: fixed;
-  top: 0;            
-  left: 0;            
-  width: 100vw;         
-  height: 100vh;    
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   backdrop-filter: blur(5px);
   z-index: 9999;
-  pointer-events: all; 
+  pointer-events: all;
 
-  
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-
-#root, .main-container {
+#root,
+.main-container {
   height: 95%;
 }
 
-.main-container{
+.main-container {
   display: flex;
 }
 
-.food-container, .statis-container{
+.food-container,
+.statis-container {
   border-left: solid;
 }
 
-.options{
-  height: 10%;  
+.options {
+  height: 10%;
   display: flex;
   align-items: center;
   justify-content: left;

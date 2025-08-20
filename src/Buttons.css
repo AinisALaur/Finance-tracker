@@ -1,10 +1,11 @@
-.button{
-    height: 50px;
-    width: 50px;
-    margin-left: 20px;
-    transition: filter 0.2s;
+.button {
+  height: 50px;
+  width: 50px;
+  margin-left: 20px;
+  transition: filter 0.2s;
 }
 
 .button:hover {
-    filter: invert(48%) sepia(91%) saturate(603%) hue-rotate(75deg) brightness(92%) contrast(91%);
+  filter: invert(48%) sepia(91%) saturate(603%) hue-rotate(75deg)
+    brightness(92%) contrast(91%);
 }
