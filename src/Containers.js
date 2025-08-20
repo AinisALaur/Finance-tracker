@@ -2,8 +2,8 @@ import "./Containers.css";
 import closeIcon from "./close.png";
 import { useState } from "react";
 
-function DataContainer({ className }) {
-  return <div className={`data-container ${className || ""}`}></div>;
+function DataContainer({ className, children }) {
+  return <div className={`data-container ${className || ""}`}>{children}</div>;
 }
 
 function TextBox({ children }) {
@@ -153,8 +153,28 @@ function AddMenu({ setBlurOn, setAddMenuOn }) {
   );
 }
 
+function TypeCircle({ className }) {
+  return <div className={`type-circle ${className || ""}`}></div>;
+}
+
+function Instance({ className, name, author, date, amount }) {
+  return (
+    <div className="instance-container">
+      <div className="instance-ball">
+        <TypeCircle className={className}></TypeCircle>
+      </div>
+      <div className="instance-info">
+        <div className="instance-name">{name}</div>
+        <div className="instance-author">{author}</div>
+        <div className="instance-date">{date}</div>
+      </div>
+      <div className="instance-amount">{amount}</div>
+    </div>
+  );
+}
+
 function createInstance(category, subCategory, amount, date) {
   console.log(category, subCategory, amount, date);
 }
 
-export { Container, TextBox, DataContainer, AddMenu };
+export { Container, TextBox, DataContainer, AddMenu, Instance };
