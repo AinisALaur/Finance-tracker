@@ -143,7 +143,7 @@ function AddMenu({ setBlurOn, setAddMenuOn, onCreateInstance }) {
           </div>
         )}
 
-        {date && (
+        {date && category === "food" && (
           <div className="add-menu-5-section">
             <div className="add-menu-5-section-text">
               Select person who paid
@@ -158,7 +158,8 @@ function AddMenu({ setBlurOn, setAddMenuOn, onCreateInstance }) {
           </div>
         )}
 
-        {author && (
+        {(category === "utilities" && date) ||
+        (category === "food" && date && author) ? (
           <div className="add-menu-footer">
             <button
               type="button"
@@ -178,7 +179,7 @@ function AddMenu({ setBlurOn, setAddMenuOn, onCreateInstance }) {
               Submit
             </button>
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );
