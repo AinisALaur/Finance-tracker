@@ -121,7 +121,7 @@ function AddMenu({ setBlurOn, setAddMenuOn, onCreateInstance }) {
             <div className="add-menu-3-section-text">Enter spent sum</div>
             <div className="add-menu-3-section-form">
               <input
-                type="text"
+                type="number"
                 placeholder="-€"
                 value={amount}
                 onChange={handleChangeAmount}
@@ -152,7 +152,7 @@ function AddMenu({ setBlurOn, setAddMenuOn, onCreateInstance }) {
               <select value={author} onChange={handleChangeAuthor}>
                 <option value="">--Not selected--</option>
                 <option value="ainis">Ainis</option>
-                <option value="emile">Emile</option>
+                <option value="emilė">Emilė</option>
               </select>
             </div>
           </div>
@@ -163,7 +163,13 @@ function AddMenu({ setBlurOn, setAddMenuOn, onCreateInstance }) {
             <button
               type="button"
               onClick={() => {
-                onCreateInstance(category, subCategory, amount, date, author);
+                onCreateInstance(
+                  category,
+                  subCategory,
+                  amount.trim() + " eur",
+                  date,
+                  author
+                );
 
                 setBlurOn((prev) => !prev);
                 setAddMenuOn((prev) => !prev);
@@ -189,8 +195,8 @@ function Instance({ className, name, author, date, amount }) {
         <TypeCircle className={className}></TypeCircle>
       </div>
       <div className="instance-info">
-        <div className="instance-name">{name}</div>
-        <div className="instance-author">{author}</div>
+        <div className="instance-name">{name.toUpperCase()}</div>
+        <div className="instance-author">{author.toUpperCase()}</div>
         <div className="instance-date">{date}</div>
       </div>
       <div className="instance-amount">{amount}</div>
