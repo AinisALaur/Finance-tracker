@@ -121,11 +121,14 @@
   opacity: 0;
   transition: 0.2s;
   z-index: 2;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .instance-on-hover:hover {
   background-color: rgb(108, 108, 108);
-  opacity: 0.1;
+  opacity: 0.4;
 }
 
 .instance-ball,

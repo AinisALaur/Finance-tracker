@@ -19,6 +19,7 @@ import {
 function App() {
   const [blurOn, setBlurOn] = useState(false);
   const [addMenuOn, setAddMenuOn] = useState(false);
+  const [deleteInstance, setDeleteInstance] = useState("");
   const [instances, setInstances] = useState({ utilities: [], food: [] });
   const firstRender = useRef(true);
 
@@ -46,6 +47,21 @@ function App() {
     localStorage.setItem("utilities", JSON.stringify(instances.utilities));
     localStorage.setItem("food", JSON.stringify(instances.food));
   }, [instances]);
+
+  useEffect(() => {
+    if (deleteInstance) {
+      setInstances((prev) => {
+        const newInstances = {};
+        for (const category in prev) {
+          newInstances[category] = prev[category].filter(
+            (inst) => inst.id !== deleteInstance
+          );
+        }
+        return newInstances;
+      });
+      setDeleteInstance("");
+    }
+  }, [deleteInstance]);
 
   function handleCreateInstance(category, subCategory, amount, date, author) {
     const newInst = {
@@ -111,6 +127,18 @@ function App() {
     return total;
   }
 
+  function handleDeleteInstance(id) {
+    setInstances((prev) => {
+      const newInstances = {};
+      for (const category in prev) {
+        newInstances[category] = prev[category].filter(
+          (inst) => inst.id !== id
+        );
+      }
+      return newInstances;
+    });
+  }
+
   return (
     <>
       {blurOn && (
@@ -130,7 +158,11 @@ function App() {
           <TextBox>Utilities</TextBox>
           <DataContainer id="util-data">
             {instances.utilities.map((inst) => (
-              <Instance key={inst.id} {...inst} />
+              <Instance
+                key={inst.id}
+                {...inst}
+                onDelete={handleDeleteInstance}
+              />
             ))}
           </DataContainer>
         </Container>
@@ -138,7 +170,11 @@ function App() {
           <TextBox>Shopping</TextBox>
           <DataContainer id="food-data">
             {instances.food.map((inst) => (
-              <Instance key={inst.id} {...inst} />
+              <Instance
+                key={inst.id}
+                {...inst}
+                onDelete={handleDeleteInstance}
+              />
             ))}
           </DataContainer>
         </Container>

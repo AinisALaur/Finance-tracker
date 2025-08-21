@@ -189,11 +189,19 @@ function TypeCircle({ className }) {
   return <div className={`type-circle ${className || ""}`}></div>;
 }
 
-function Instance({ className, name, author, date, amount }) {
+function Instance({ id, className, name, author, date, amount, onDelete }) {
   return (
     <>
       <div className="instance-container">
-        <div className="instance-on-hover"></div>
+        <div className="instance-on-hover">
+          <button className="instance-on-hover-edit">Edit</button>
+          <button
+            className="instance-on-hover-delete"
+            onClick={() => onDelete(id)}
+          >
+            Delete
+          </button>
+        </div>
         <div className="instance-ball">
           <TypeCircle className={className}></TypeCircle>
         </div>
