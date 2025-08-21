@@ -108,6 +108,24 @@
   width: 100%;
   height: 17%;
   display: flex;
+  position: relative;
+  z-index: 1;
+}
+
+.instance-on-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: 0.2s;
+  z-index: 2;
+}
+
+.instance-on-hover:hover {
+  background-color: rgb(108, 108, 108);
+  opacity: 0.1;
 }
 
 .instance-ball,

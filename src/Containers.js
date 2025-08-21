@@ -191,19 +191,22 @@ function TypeCircle({ className }) {
 
 function Instance({ className, name, author, date, amount }) {
   return (
-    <div className="instance-container">
-      <div className="instance-ball">
-        <TypeCircle className={className}></TypeCircle>
+    <>
+      <div className="instance-container">
+        <div className="instance-on-hover"></div>
+        <div className="instance-ball">
+          <TypeCircle className={className}></TypeCircle>
+        </div>
+        <div className="instance-info">
+          <div className="instance-name">{name.toUpperCase()}</div>
+          {author && (
+            <div className="instance-author">{author.toUpperCase()}</div>
+          )}
+          <div className="instance-date">{date.toLocaleDateString()}</div>
+        </div>
+        <div className="instance-amount">{amount}€</div>
       </div>
-      <div className="instance-info">
-        <div className="instance-name">{name.toUpperCase()}</div>
-        {author && (
-          <div className="instance-author">{author.toUpperCase()}</div>
-        )}
-        <div className="instance-date">{date.toLocaleDateString()}</div>
-      </div>
-      <div className="instance-amount">{amount}€</div>
-    </div>
+    </>
   );
 }
 
@@ -234,11 +237,11 @@ function MonthlyData({
         <div className="utility-expenses-amount">{utilityExpenses} eur</div>
       </div>
       <div className="this-month-total">
-        <div className="this-month-total-name">This month total</div>
+        <div className="this-month-total-name">This month's total</div>
         <div className="this-month-total-amount">{thisMonthTotal} eur</div>
       </div>
       <div className="last-month-total">
-        <div className="last-month-total-name">Last month total</div>
+        <div className="last-month-total-name">Last month's total</div>
         <div className="last-month-total-amount">{lastMonthTotal} eur</div>
       </div>
     </>
