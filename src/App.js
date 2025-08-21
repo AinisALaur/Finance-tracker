@@ -7,6 +7,7 @@ import {
   DataContainer,
   AddMenu,
   Instance,
+  MonthlyData,
 } from "./Containers";
 import {
   SettingsButton,
@@ -22,8 +23,18 @@ function App() {
   const firstRender = useRef(true);
 
   useEffect(() => {
-    const storedUtilities = JSON.parse(localStorage.getItem("utilities")) || [];
-    const storedFood = JSON.parse(localStorage.getItem("food")) || [];
+    const storedUtilities =
+      JSON.parse(localStorage.getItem("utilities"))?.map((inst) => ({
+        ...inst,
+        date: new Date(inst.date),
+      })) || [];
+
+    const storedFood =
+      JSON.parse(localStorage.getItem("food"))?.map((inst) => ({
+        ...inst,
+        date: new Date(inst.date),
+      })) || [];
+
     setInstances({ utilities: storedUtilities, food: storedFood });
   }, []);
 
@@ -42,14 +53,62 @@ function App() {
       className: subCategory,
       name: subCategory,
       author,
-      date,
-      amount,
+      date: new Date(date),
+      amount: parseFloat(amount),
     };
 
     setInstances((prev) => ({
       ...prev,
       [category]: [...prev[category], newInst],
     }));
+  }
+
+  function sumByAuthor(author) {
+    const now = new Date();
+    let total = 0;
+
+    for (const category in instances) {
+      for (const inst of instances[category]) {
+        if (
+          inst.author === author &&
+          inst.date.getMonth() === now.getMonth() &&
+          inst.date.getFullYear() === now.getFullYear()
+        ) {
+          total += inst.amount;
+        }
+      }
+    }
+    return total;
+  }
+
+  function sumByCategory(thisCategory) {
+    const now = new Date();
+    let total = 0;
+
+    for (const inst of instances[thisCategory]) {
+      if (
+        inst.date.getMonth() === now.getMonth() &&
+        inst.date.getFullYear() === now.getFullYear()
+      ) {
+        total += inst.amount;
+      }
+    }
+    return total;
+  }
+
+  function sumByMonth(year, month) {
+    let total = 0;
+    for (const category in instances) {
+      for (const inst of instances[category]) {
+        if (
+          inst.date.getMonth() === month &&
+          inst.date.getFullYear() === year
+        ) {
+          total += inst.amount;
+        }
+      }
+    }
+    return total;
   }
 
   return (
@@ -85,7 +144,22 @@ function App() {
         </Container>
         <Container className="statis-container">
           <TextBox>Monthly Statistics</TextBox>
-          <DataContainer id="statis-data"></DataContainer>
+          <DataContainer id="statis-data">
+            <MonthlyData
+              ainisExpenses={sumByAuthor("ainis")}
+              emileExpenses={sumByAuthor("emilė")}
+              foodExpenses={sumByCategory("food")}
+              utilityExpenses={sumByCategory("utilities")}
+              thisMonthTotal={sumByMonth(
+                new Date().getFullYear(),
+                new Date().getMonth()
+              )}
+              lastMonthTotal={sumByMonth(
+                new Date().getFullYear(),
+                new Date().getMonth() - 1
+              )}
+            />
+          </DataContainer>
         </Container>
       </div>
 

@@ -167,7 +167,7 @@ function AddMenu({ setBlurOn, setAddMenuOn, onCreateInstance }) {
                 onCreateInstance(
                   category,
                   subCategory,
-                  amount.trim() + " eur",
+                  amount.trim() + "€",
                   date,
                   author
                 );
@@ -197,12 +197,52 @@ function Instance({ className, name, author, date, amount }) {
       </div>
       <div className="instance-info">
         <div className="instance-name">{name.toUpperCase()}</div>
-        <div className="instance-author">{author.toUpperCase()}</div>
-        <div className="instance-date">{date}</div>
+        {author && (
+          <div className="instance-author">{author.toUpperCase()}</div>
+        )}
+        <div className="instance-date">{date.toLocaleDateString()}</div>
       </div>
-      <div className="instance-amount">{amount}</div>
+      <div className="instance-amount">{amount}€</div>
     </div>
   );
 }
 
-export { Container, TextBox, DataContainer, AddMenu, Instance };
+function MonthlyData({
+  ainisExpenses,
+  emileExpenses,
+  foodExpenses,
+  utilityExpenses,
+  thisMonthTotal,
+  lastMonthTotal,
+}) {
+  return (
+    <>
+      <div className="ainis-expenses">
+        <div className="ainis-expenses-name">Ainis</div>
+        <div className="ainis-expenses-amount">{ainisExpenses} eur</div>
+      </div>
+      <div className="emile-expenses">
+        <div className="emile-expenses-name">Emilė</div>
+        <div className="emile-expenses-amount">{emileExpenses} eur</div>
+      </div>
+      <div className="food-expenses">
+        <div className="food-expenses-name">Food</div>
+        <div className="food-expenses-amount">{foodExpenses} eur</div>
+      </div>
+      <div className="utility-expenses">
+        <div className="utility-expenses-name">Utilities</div>
+        <div className="utility-expenses-amount">{utilityExpenses} eur</div>
+      </div>
+      <div className="this-month-total">
+        <div className="this-month-total-name">This month total</div>
+        <div className="this-month-total-amount">{thisMonthTotal} eur</div>
+      </div>
+      <div className="last-month-total">
+        <div className="last-month-total-name">Last month total</div>
+        <div className="last-month-total-amount">{lastMonthTotal} eur</div>
+      </div>
+    </>
+  );
+}
+
+export { Container, TextBox, DataContainer, AddMenu, Instance, MonthlyData };
