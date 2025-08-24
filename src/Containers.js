@@ -26,11 +26,13 @@ function AddMenu({
   givenDate,
   givenAuthor,
   editModeOn,
+  givenUsage,
 }) {
   const [category, setCategory] = useState(givenCategory);
   const [subCategory, setSubCategory] = useState(givenSubCategory);
   const [amount, setAmount] = useState(givenAmount);
   const [date, setDate] = useState(givenDate);
+  const [usage, setUsage] = useState(givenUsage);
   const [id, setId] = useState(givenId);
   const [author, setAuthor] = useState(givenAuthor);
 
@@ -41,6 +43,7 @@ function AddMenu({
     setAmount(givenAmount);
     setDate(givenDate);
     setAuthor(givenAuthor);
+    setUsage(givenUsage);
   }, [
     givenId,
     givenCategory,
@@ -48,6 +51,7 @@ function AddMenu({
     givenAmount,
     givenDate,
     givenAuthor,
+    givenUsage,
   ]);
 
   const handleChangeCategory = (e) => {
@@ -56,6 +60,7 @@ function AddMenu({
     setAmount("");
     setDate("");
     setAuthor("");
+    setUsage("");
   };
 
   const handleChangeSubCategory = (e) => {
@@ -63,21 +68,29 @@ function AddMenu({
     setAmount("");
     setDate("");
     setAuthor("");
+    setUsage("");
   };
 
   const handleChangeAmount = (e) => {
     setAmount(e.target.value);
     setDate("");
     setAuthor("");
+    setUsage("");
   };
 
   const handleChangeDate = (e) => {
     setDate(e.target.value);
     setAuthor("");
+    setUsage("");
   };
 
   const handleChangeAuthor = (e) => {
     setAuthor(e.target.value);
+    setUsage("");
+  };
+
+  const handleChangeUsage = (e) => {
+    setUsage(e.target.value);
   };
 
   return (
@@ -183,7 +196,53 @@ function AddMenu({
           </div>
         )}
 
-        {(category === "utilities" && date && !editModeOn) ||
+        {date &&
+          category === "utilities" &&
+          (subCategory === "hot-water" || subCategory === "cold-water") && (
+            <div className="add-menu-5-section">
+              <div className="add-menu-5-section-text">Input water usage</div>
+              <div className="add-menu-5-section-form">
+                <input
+                  type="number"
+                  placeholder="-m³"
+                  value={usage}
+                  onChange={handleChangeUsage}
+                />
+              </div>
+            </div>
+          )}
+
+        {date && category === "utilities" && subCategory === "electricity" && (
+          <div className="add-menu-5-section">
+            <div className="add-menu-5-section-text">
+              Input electricity usage
+            </div>
+            <div className="add-menu-5-section-form">
+              <input
+                type="number"
+                placeholder="-kWh"
+                value={usage}
+                onChange={handleChangeUsage}
+              ></input>
+            </div>
+          </div>
+        )}
+
+        {date && category === "utilities" && subCategory === "gas" && (
+          <div className="add-menu-5-section">
+            <div className="add-menu-5-section-text">Input gas usage</div>
+            <div className="add-menu-5-section-form">
+              <input
+                type="number"
+                placeholder="-m³"
+                value={usage}
+                onChange={handleChangeUsage}
+              ></input>
+            </div>
+          </div>
+        )}
+
+        {(category === "utilities" && usage && !editModeOn) ||
         (category === "food" && date && author && !editModeOn) ? (
           <div className="add-menu-footer">
             <button
@@ -194,7 +253,8 @@ function AddMenu({
                   subCategory,
                   amount + "€",
                   date,
-                  author
+                  author,
+                  usage
                 );
 
                 setBlurOn((prev) => !prev);
@@ -219,7 +279,8 @@ function AddMenu({
                   subCategory,
                   amount + "€",
                   date,
-                  author
+                  author,
+                  usage
                 );
 
                 setBlurOn((prev) => !prev);
@@ -246,6 +307,7 @@ function Instance({
   author,
   date,
   amount,
+  usage,
   onDelete,
   onEdit,
 }) {
@@ -278,9 +340,21 @@ function Instance({
           {author && (
             <div className="instance-author">{author.toUpperCase()}</div>
           )}
+          {typeof usage === "number" &&
+            usage > 0 &&
+            (name === "cold-water" ||
+              name === "hot-water" ||
+              name === "gas") && (
+              <div className="instance-usage">{usage} m³</div>
+            )}
+
+          {typeof usage === "number" && usage > 0 && name === "electricity" && (
+            <div className="instance-usage">{usage} kWh</div>
+          )}
+
           <div className="instance-date">{date.toLocaleDateString()}</div>
         </div>
-        <div className="instance-amount">{amount}€</div>
+        <div className="instance-amount">{amount} €</div>
       </div>
     </>
   );

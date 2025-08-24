@@ -29,6 +29,7 @@ function App() {
   const [date, setDate] = useState("");
   const [author, setAuthor] = useState("");
   const [id, setId] = useState("");
+  const [usage, setUsage] = useState("");
 
   const firstRender = useRef(true);
 
@@ -72,7 +73,14 @@ function App() {
     }
   }, [deleteInstance]);
 
-  function handleCreateInstance(category, subCategory, amount, date, author) {
+  function handleCreateInstance(
+    category,
+    subCategory,
+    amount,
+    date,
+    author,
+    usage
+  ) {
     const newInst = {
       id: Date.now(),
       className: subCategory,
@@ -80,6 +88,7 @@ function App() {
       author,
       date: new Date(date),
       amount: parseFloat(amount),
+      usage: parseFloat(usage),
     };
 
     setInstances((prev) => ({
@@ -95,11 +104,11 @@ function App() {
     subCategory,
     amount,
     date,
-    author
+    author,
+    usage
   ) {
     setInstances((prev) => {
       if (oldCategory === newCategory) {
-        // ✅ Case 1: category unchanged → just update the instance
         const updatedCategoryInstances = prev[oldCategory].map((inst) => {
           if (inst.id === id) {
             return {
@@ -109,6 +118,7 @@ function App() {
               author,
               date: new Date(date),
               amount: parseFloat(amount),
+              usage: usage,
             };
           }
           return inst;
@@ -119,7 +129,6 @@ function App() {
           [oldCategory]: updatedCategoryInstances,
         };
       } else {
-        // ✅ Case 2: category changed → move instance between categories
         const filteredOldCategory = prev[oldCategory].filter(
           (inst) => inst.id !== id
         );
@@ -131,6 +140,7 @@ function App() {
           author,
           date: new Date(date),
           amount: parseFloat(amount),
+          usage: parseFloat(usage),
         };
 
         const updatedNewCategory = prev[newCategory]
@@ -242,19 +252,7 @@ function App() {
     setAmount(instance.amount);
     setAuthor(instance.author);
     setDate(formatDateForInput(instance.date));
-
-    console.log(
-      "Category:",
-      category,
-      "SubCategory:",
-      instance.className,
-      "Amount:",
-      instance.amount,
-      "Author:",
-      instance.author,
-      "Date:",
-      instance.date
-    );
+    setUsage(instance.usage);
   }
 
   return (
@@ -272,6 +270,7 @@ function App() {
               givenAmount={amount}
               givenDate={date}
               givenAuthor={author}
+              givenUsage={usage}
               editModeOn={editModeOn}
               setEditModeOn={setEditModeOn}
               onEditInstance={handleEditInstance}
@@ -341,6 +340,7 @@ function App() {
           setAuthor={setAuthor}
           setDate={setDate}
           setAmount={setAmount}
+          setUsage={setUsage}
           setEditModeOn={setEditModeOn}
         />
       </div>
