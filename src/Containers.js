@@ -72,7 +72,14 @@ function AddMenu({
   };
 
   const handleChangeAmount = (e) => {
-    setAmount(e.target.value);
+    let value = e.target.value;
+
+    if (value === "" || Number(value) <= 0) {
+      setAmount("");
+      return;
+    }
+
+    setAmount(value);
     setDate("");
     setAuthor("");
     setUsage("");
@@ -90,7 +97,14 @@ function AddMenu({
   };
 
   const handleChangeUsage = (e) => {
-    setUsage(e.target.value);
+    let value = e.target.value;
+
+    if (value === "" || Number(value) <= 0) {
+      setUsage("");
+      return;
+    }
+
+    setUsage(value);
   };
 
   return (
@@ -237,7 +251,9 @@ function AddMenu({
                 placeholder="-m³"
                 value={usage}
                 onChange={handleChangeUsage}
-              ></input>
+                step="0.01"
+                min="0.01"
+              />
             </div>
           </div>
         )}
@@ -345,16 +361,22 @@ function Instance({
             (name === "cold-water" ||
               name === "hot-water" ||
               name === "gas") && (
-              <div className="instance-usage">{usage} m³</div>
+              <div className="instance-usage">
+                {Math.round((usage + Number.EPSILON) * 100) / 100} m³
+              </div>
             )}
 
           {typeof usage === "number" && usage > 0 && name === "electricity" && (
-            <div className="instance-usage">{usage} kWh</div>
+            <div className="instance-usage">
+              {Math.round((usage + Number.EPSILON) * 100) / 100} kWh
+            </div>
           )}
 
           <div className="instance-date">{date.toLocaleDateString()}</div>
         </div>
-        <div className="instance-amount">{amount} €</div>
+        <div className="instance-amount">
+          {Math.round((amount + Number.EPSILON) * 100) / 100} €
+        </div>
       </div>
     </>
   );
@@ -372,27 +394,39 @@ function MonthlyData({
     <>
       <div className="ainis-expenses">
         <div className="ainis-expenses-name">Ainis</div>
-        <div className="ainis-expenses-amount">{ainisExpenses} eur</div>
+        <div className="ainis-expenses-amount">
+          {Math.round((ainisExpenses + Number.EPSILON) * 100) / 100} eur
+        </div>
       </div>
       <div className="emile-expenses">
         <div className="emile-expenses-name">Emilė</div>
-        <div className="emile-expenses-amount">{emileExpenses} eur</div>
+        <div className="emile-expenses-amount">
+          {Math.round((emileExpenses + Number.EPSILON) * 100) / 100} eur
+        </div>
       </div>
       <div className="food-expenses">
         <div className="food-expenses-name">Food</div>
-        <div className="food-expenses-amount">{foodExpenses} eur</div>
+        <div className="food-expenses-amount">
+          {Math.round((foodExpenses + Number.EPSILON) * 100) / 100} eur
+        </div>
       </div>
       <div className="utility-expenses">
         <div className="utility-expenses-name">Utilities</div>
-        <div className="utility-expenses-amount">{utilityExpenses} eur</div>
+        <div className="utility-expenses-amount">
+          {Math.round((utilityExpenses + Number.EPSILON) * 100) / 100} eur
+        </div>
       </div>
       <div className="this-month-total">
         <div className="this-month-total-name">This month's total</div>
-        <div className="this-month-total-amount">{thisMonthTotal} eur</div>
+        <div className="this-month-total-amount">
+          {Math.round((thisMonthTotal + Number.EPSILON) * 100) / 100} eur
+        </div>
       </div>
       <div className="last-month-total">
         <div className="last-month-total-name">Last month's total</div>
-        <div className="last-month-total-amount">{lastMonthTotal} eur</div>
+        <div className="last-month-total-amount">
+          {Math.round((lastMonthTotal + Number.EPSILON) * 100) / 100} eur
+        </div>
       </div>
     </>
   );
