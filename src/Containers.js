@@ -430,7 +430,13 @@ function MonthlyData({
   );
 }
 
-function ImportMenu({ setBlurOn, setImportMenuOn }) {
+function ImportMenu({ setBlurOn, setImportMenuOn, onImport }) {
+  const [importFile, setImportFile] = useState("");
+
+  const handleChangeFile = (e) => {
+    setImportFile(e.target.files[0]);
+  };
+
   return (
     <div className="import-menu">
       <div className="import-menu-header">
@@ -452,11 +458,21 @@ function ImportMenu({ setBlurOn, setImportMenuOn }) {
 
       <div className="import-menu-body">
         <div className="import-menu-header-choose-file">
-          <input type="file"></input>
+          <input type="file" onChange={handleChangeFile}></input>
         </div>
       </div>
       <div className="import-menu-footer">
-        <button>Import data</button>
+        {importFile && (
+          <button
+            onClick={() => {
+              setBlurOn((prev) => !prev);
+              setImportMenuOn((prev) => !prev);
+              onImport(importFile);
+            }}
+          >
+            Import data
+          </button>
+        )}
       </div>
     </div>
   );

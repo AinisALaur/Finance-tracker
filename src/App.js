@@ -76,6 +76,7 @@ function App() {
   }, [deleteInstance]);
 
   function handleCreateInstance(
+    id,
     category,
     subCategory,
     amount,
@@ -83,20 +84,27 @@ function App() {
     author,
     usage
   ) {
-    const newInst = {
-      id: Date.now(),
-      className: subCategory,
-      name: subCategory,
-      author,
-      date: new Date(date),
-      amount: parseFloat(amount),
-      usage: parseFloat(usage),
-    };
+    setInstances((prev) => {
+      const list = Array.isArray(prev[category]) ? prev[category] : [];
+      const exists = list.some((inst) => inst.id === id);
 
-    setInstances((prev) => ({
-      ...prev,
-      [category]: [...prev[category], newInst],
-    }));
+      if (exists) return prev;
+
+      const newInst = {
+        id: id || Date.now(),
+        className: subCategory,
+        name: subCategory,
+        author,
+        date: new Date(date),
+        amount: parseFloat(amount),
+        usage: parseFloat(usage),
+      };
+
+      return {
+        ...prev,
+        [category]: [...list, newInst],
+      };
+    });
   }
 
   function handleEditInstance(
@@ -262,15 +270,15 @@ function App() {
     for (const category in instances) {
       instances[category].forEach((instance) => {
         if (category === "utilities") {
-          text += instance.id + " ";
           text += category + " ";
+          text += instance.id + " ";
           text += instance.name + " ";
           text += instance.amount + " ";
           text += instance.usage + " ";
           text += formatDateForInput(instance.date) + " ";
         } else {
-          text += instance.id + " ";
           text += category + " ";
+          text += instance.id + " ";
           text += instance.name + " ";
           text += instance.amount + " ";
           text += instance.author + " ";
@@ -287,6 +295,37 @@ function App() {
     link.click();
 
     URL.revokeObjectURL(link.href);
+  }
+
+  function handleImport(file) {
+    if (!file) return;
+
+    if (file.type !== "text/plain") {
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const text = e.target.result;
+
+      const lines = text.trim().split("\n");
+
+      lines.forEach((line) => {
+        const tokens = line.trim().split(" ");
+        const category = tokens[0];
+
+        if (category === "utilities") {
+          const [_, id, name, amount, usage, date] = tokens;
+          handleCreateInstance(id, "utilities", name, amount, date, "", usage);
+        } else {
+          const [_, id, name, amount, author, date] = tokens;
+          handleCreateInstance(id, category, name, amount, date, author, 0);
+        }
+      });
+    };
+
+    reader.readAsText(file);
   }
 
   return (
@@ -315,6 +354,7 @@ function App() {
             <ImportMenu
               setBlurOn={setBlurOn}
               setImportMenuOn={setImportMenuOn}
+              onImport={handleImport}
             ></ImportMenu>
           )}
         </div>
