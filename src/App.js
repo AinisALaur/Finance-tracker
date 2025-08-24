@@ -373,6 +373,13 @@ function App() {
             ></DataContainerOptionsUtilities>
             {instances.utilities
               .slice()
+              .filter((inst) =>
+                ["hot-water", "cold-water", "electricity", "gas"].includes(
+                  filterUtilities
+                )
+                  ? inst.name === filterUtilities
+                  : true
+              )
               .sort((a, b) =>
                 sortUtilities === "dateDescending-utilities"
                   ? new Date(b.date) - new Date(a.date)
@@ -401,6 +408,11 @@ function App() {
             ></DataContainerOptionsFood>
             {instances.food
               .slice()
+              .filter((inst) =>
+                ["lidl", "maxima", "iki", "other"].includes(filterFood)
+                  ? inst.name === filterFood
+                  : true
+              )
               .sort((a, b) =>
                 sortFood === "dateDescending-food"
                   ? new Date(b.date) - new Date(a.date)

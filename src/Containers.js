@@ -27,10 +27,10 @@ function DataContainerOptionsUtilities({
       <div className="data-container-options">
         <select onChange={handleChangeFilter}>
           <option value="all-utilities">All categories</option>
-          <option value="hot-water-utilities">Hot water</option>
-          <option value="cold-water-utilities">Cold water</option>
-          <option value="electricity-utilities">Electricity</option>
-          <option value="gas-utilities">Gas</option>
+          <option value="hot-water">Hot water</option>
+          <option value="cold-water">Cold water</option>
+          <option value="electricity">Electricity</option>
+          <option value="gas">Gas</option>
         </select>
 
         <select onChange={handleChangeSort}>
