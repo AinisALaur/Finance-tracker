@@ -28,6 +28,7 @@ function App() {
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
   const [author, setAuthor] = useState("");
+  const [id, setId] = useState("");
 
   const firstRender = useRef(true);
 
@@ -85,6 +86,64 @@ function App() {
       ...prev,
       [category]: [...prev[category], newInst],
     }));
+  }
+
+  function handleEditInstance(
+    id,
+    oldCategory,
+    newCategory,
+    subCategory,
+    amount,
+    date,
+    author
+  ) {
+    setInstances((prev) => {
+      if (oldCategory === newCategory) {
+        // ✅ Case 1: category unchanged → just update the instance
+        const updatedCategoryInstances = prev[oldCategory].map((inst) => {
+          if (inst.id === id) {
+            return {
+              ...inst,
+              className: subCategory,
+              name: subCategory,
+              author,
+              date: new Date(date),
+              amount: parseFloat(amount),
+            };
+          }
+          return inst;
+        });
+
+        return {
+          ...prev,
+          [oldCategory]: updatedCategoryInstances,
+        };
+      } else {
+        // ✅ Case 2: category changed → move instance between categories
+        const filteredOldCategory = prev[oldCategory].filter(
+          (inst) => inst.id !== id
+        );
+
+        const updatedInstance = {
+          id,
+          className: subCategory,
+          name: subCategory,
+          author,
+          date: new Date(date),
+          amount: parseFloat(amount),
+        };
+
+        const updatedNewCategory = prev[newCategory]
+          ? [...prev[newCategory], updatedInstance]
+          : [updatedInstance];
+
+        return {
+          ...prev,
+          [oldCategory]: filteredOldCategory,
+          [newCategory]: updatedNewCategory,
+        };
+      }
+    });
   }
 
   function sumByAuthor(author) {
@@ -151,7 +210,7 @@ function App() {
     for (const category in instances) {
       const found = instances[category].find((inst) => inst.id === id);
       if (found) {
-        return { instance: found, category }; // return both
+        return { instance: found, category };
       }
     }
     return null;
@@ -177,6 +236,7 @@ function App() {
 
     const { instance, category } = result;
 
+    setId(id);
     setCategory(category);
     setSubCategory(instance.className);
     setAmount(instance.amount);
@@ -206,6 +266,7 @@ function App() {
               setBlurOn={setBlurOn}
               setAddMenuOn={setAddMenuOn}
               onCreateInstance={handleCreateInstance}
+              givenId={id}
               givenCategory={category}
               givenSubCategory={subCategory}
               givenAmount={amount}
@@ -213,6 +274,7 @@ function App() {
               givenAuthor={author}
               editModeOn={editModeOn}
               setEditModeOn={setEditModeOn}
+              onEditInstance={handleEditInstance}
             ></AddMenu>
           )}
         </div>
@@ -273,11 +335,13 @@ function App() {
         <AddButton
           setBlurOn={setBlurOn}
           setAddMenuOn={setAddMenuOn}
+          setId={setId}
           setCategory={setCategory}
           setSubCategory={setSubCategory}
           setAuthor={setAuthor}
           setDate={setDate}
           setAmount={setAmount}
+          setEditModeOn={setEditModeOn}
         />
       </div>
     </>

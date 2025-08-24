@@ -18,27 +18,37 @@ function AddMenu({
   setBlurOn,
   setAddMenuOn,
   onCreateInstance,
+  onEditInstance,
+  givenId,
   givenCategory,
   givenSubCategory,
   givenAmount,
   givenDate,
   givenAuthor,
   editModeOn,
-  setEditModeOn,
 }) {
   const [category, setCategory] = useState(givenCategory);
   const [subCategory, setSubCategory] = useState(givenSubCategory);
   const [amount, setAmount] = useState(givenAmount);
   const [date, setDate] = useState(givenDate);
+  const [id, setId] = useState(givenId);
   const [author, setAuthor] = useState(givenAuthor);
 
   useEffect(() => {
+    setId(givenId);
     setCategory(givenCategory);
     setSubCategory(givenSubCategory);
     setAmount(givenAmount);
     setDate(givenDate);
     setAuthor(givenAuthor);
-  }, [givenCategory, givenSubCategory, givenAmount, givenDate, givenAuthor]);
+  }, [
+    givenId,
+    givenCategory,
+    givenSubCategory,
+    givenAmount,
+    givenDate,
+    givenAuthor,
+  ]);
 
   const handleChangeCategory = (e) => {
     setCategory(e.target.value);
@@ -73,7 +83,8 @@ function AddMenu({
   return (
     <div className="add-menu">
       <div className="add-menu-header">
-        <div className="add-menu-tittle">Add new instance</div>
+        {!editModeOn && <div className="add-menu-tittle">Add new instance</div>}
+        {editModeOn && <div className="add-menu-tittle">Edit instance</div>}
         <div className="close-add-menu">
           <img
             src={closeIcon}
@@ -100,7 +111,6 @@ function AddMenu({
             </select>
           </div>
         </div>
-
         {category === "food" && (
           <div className="add-menu-2-section">
             <div className="add-menu-2-section-text">
@@ -117,7 +127,6 @@ function AddMenu({
             </div>
           </div>
         )}
-
         {category === "utilities" && (
           <div className="add-menu-2-section">
             <div className="add-menu-2-section-text">
@@ -134,7 +143,6 @@ function AddMenu({
             </div>
           </div>
         )}
-
         {subCategory && (
           <div className="add-menu-3-section">
             <div className="add-menu-3-section-text">Enter spent sum</div>
@@ -148,7 +156,6 @@ function AddMenu({
             </div>
           </div>
         )}
-
         {amount !== "" && (
           <div className="add-menu-4-section">
             <div className="add-menu-4-section-text">Date of spending</div>
@@ -161,7 +168,6 @@ function AddMenu({
             </div>
           </div>
         )}
-
         {date && category === "food" && (
           <div className="add-menu-5-section">
             <div className="add-menu-5-section-text">
@@ -177,8 +183,8 @@ function AddMenu({
           </div>
         )}
 
-        {(category === "utilities" && date) ||
-        (category === "food" && date && author) ? (
+        {(category === "utilities" && date && !editModeOn) ||
+        (category === "food" && date && author && !editModeOn) ? (
           <div className="add-menu-footer">
             <button
               type="button"
@@ -196,6 +202,31 @@ function AddMenu({
               }}
             >
               Submit
+            </button>
+          </div>
+        ) : null}
+
+        {(category === "utilities" && date && editModeOn) ||
+        (category === "food" && date && author && editModeOn) ? (
+          <div className="add-menu-footer">
+            <button
+              type="button"
+              onClick={() => {
+                onEditInstance(
+                  id,
+                  givenCategory,
+                  category,
+                  subCategory,
+                  amount + "€",
+                  date,
+                  author
+                );
+
+                setBlurOn((prev) => !prev);
+                setAddMenuOn((prev) => !prev);
+              }}
+            >
+              Edit
             </button>
           </div>
         ) : null}

@@ -52,6 +52,8 @@ function AddButton({
   setAmount,
   setDate,
   setAuthor,
+  setEditModeOn,
+  setId,
 }) {
   return (
     <>
@@ -67,6 +69,8 @@ function AddButton({
           setAuthor("");
           setDate("");
           setAmount("");
+          setId("");
+          setEditModeOn(false);
         }}
       />
     </>
