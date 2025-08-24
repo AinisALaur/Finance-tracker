@@ -1,22 +1,8 @@
 import "./Buttons.css";
 
-import settingsIcon from "./settings-cogwheel-button.png";
 import importIcon from "./import.png";
 import exportIcon from "./export.png";
 import addIcon from "./add.png";
-
-function SettingsButton({ setBlurOn }) {
-  return (
-    <>
-      <img
-        src={settingsIcon}
-        alt="Settings"
-        className="button"
-        onClick={() => setBlurOn((prev) => !prev)}
-      />
-    </>
-  );
-}
 
 function ImportButton({ setBlurOn }) {
   return (
@@ -79,4 +65,4 @@ function AddButton({
   );
 }
 
-export { SettingsButton, ImportButton, ExportButton, AddButton };
+export { ImportButton, ExportButton, AddButton };

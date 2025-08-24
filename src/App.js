@@ -328,7 +328,6 @@ function App() {
       </div>
 
       <div className="options">
-        <SettingsButton setBlurOn={setBlurOn} />
         <ExportButton setBlurOn={setBlurOn} />
         <ImportButton setBlurOn={setBlurOn} />
         <AddButton
