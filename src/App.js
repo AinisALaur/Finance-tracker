@@ -10,12 +10,7 @@ import {
   MonthlyData,
   ImportMenu,
 } from "./Containers";
-import {
-  SettingsButton,
-  ImportButton,
-  ExportButton,
-  AddButton,
-} from "./Buttons";
+import { ImportButton, ExportButton, AddButton } from "./Buttons";
 
 function App() {
   const [blurOn, setBlurOn] = useState(false);

@@ -263,12 +263,13 @@ function AddMenu({
               type="button"
               onClick={() => {
                 onCreateInstance(
+                  id || Date.now(),
                   category,
                   subCategory,
-                  amount + "€",
+                  amount,
                   date,
-                  author,
-                  usage
+                  author || "",
+                  usage || 0
                 );
 
                 setBlurOn((prev) => !prev);
@@ -287,14 +288,14 @@ function AddMenu({
               type="button"
               onClick={() => {
                 onEditInstance(
-                  id,
-                  givenCategory,
-                  category,
+                  id, // instance ID
+                  givenCategory, // old category
+                  category, // new category
                   subCategory,
-                  amount + "€",
+                  parseFloat(amount),
                   date,
-                  author,
-                  usage
+                  author || "",
+                  usage !== "" ? parseFloat(usage) : 0
                 );
 
                 setBlurOn((prev) => !prev);
