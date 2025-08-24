@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 function DataContainer({ className, children }) {
   return (
     <>
-      <div className={`data-container ${className || ""}`}>{children}</div>;
+      <div className={`data-container ${className || ""}`}>{children}</div>
     </>
   );
 }

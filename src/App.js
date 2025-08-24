@@ -295,7 +295,20 @@ function App() {
     const blob = new Blob([text], { type: "text/plain" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = "exportedData.txt";
+    const now = new Date();
+    const formattedDate =
+      now.getFullYear() +
+      "-" +
+      String(now.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(now.getDate()).padStart(2, "0") +
+      " " +
+      String(now.getHours()).padStart(2, "0") +
+      "h " +
+      String(now.getMinutes()).padStart(2, "0") +
+      "m";
+
+    link.download = `exportedData(${formattedDate}).txt`;
     link.click();
 
     URL.revokeObjectURL(link.href);
