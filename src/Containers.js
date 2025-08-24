@@ -36,8 +36,8 @@ function DataContainerOptionsUtilities({
         <select onChange={handleChangeSort}>
           <option value="dateDescending-utilities">Date descending</option>
           <option value="dateAscending-utilities">Date ascending</option>
-          <option value="sumDescending-utilities">Sum descending</option>
-          <option value="sumAscending-utilities">Sum ascending</option>
+          <option value="sumDescending-utilities">Amount descending</option>
+          <option value="sumAscending-utilities">Amount ascending</option>
         </select>
       </div>
     </>
@@ -71,14 +71,14 @@ function DataContainerOptionsFood({ setFilterFood, setSortFood, setAuthor }) {
         <select onChange={handleChangeAuthor}>
           <option value="all-authors">All</option>
           <option value="ainis">Ainis</option>
-          <option value="emilė  ">Emilė</option>
+          <option value="emilė">Emilė</option>
         </select>
 
         <select onChange={handleChangeSort}>
           <option value="dateDescending-food">Date descending</option>
           <option value="dateAscending-food">Date ascending</option>
-          <option value="sumDescending-food">Sum descending</option>
-          <option value="sumAscending-food">Sum ascending</option>
+          <option value="sumDescending-food">Amount descending</option>
+          <option value="sumAscending-food">Amount ascending</option>
         </select>
       </div>
     </>
@@ -115,6 +115,13 @@ function AddMenu({
   const [id, setId] = useState(givenId);
   const [author, setAuthor] = useState(givenAuthor);
 
+  // const initialHideValue = editModeOn ? false : true;
+
+  // const [hideAmount, setHideAmount] = useState(initialHideValue);
+  // const [hideUsage, setHideUsage] = useState(initialHideValue);
+  // const [hideAuthor, setHideAuthor] = useState(initialHideValue);
+  // const [hideDate, setHideDate] = useState(initialHideValue);
+
   useEffect(() => {
     setId(givenId);
     setCategory(givenCategory);
@@ -143,11 +150,15 @@ function AddMenu({
   };
 
   const handleChangeSubCategory = (e) => {
+    const value = e.target.value;
+    // if (value == "") {
+    //   setHideAmount(true);
+    //   setHideDate(true);
+    //   category == "utilities" ? setHideUsage(true) : setHideAuthor(true);
+    // } else {
+    //   setHideAmount(false);
+    // }
     setSubCategory(e.target.value);
-    setAmount("");
-    setDate("");
-    setAuthor("");
-    setUsage("");
   };
 
   const handleChangeAmount = (e) => {
@@ -158,21 +169,19 @@ function AddMenu({
       return;
     }
 
+    // setHideDate(false);
     setAmount(value);
-    setDate("");
-    setAuthor("");
-    setUsage("");
   };
 
   const handleChangeDate = (e) => {
     setDate(e.target.value);
-    setAuthor("");
-    setUsage("");
   };
 
   const handleChangeAuthor = (e) => {
     setAuthor(e.target.value);
-    setUsage("");
+    // if (!editModeOn) {
+    //   setUsage("");
+    // }
   };
 
   const handleChangeUsage = (e) => {
@@ -247,7 +256,7 @@ function AddMenu({
             </div>
           </div>
         )}
-        {subCategory && (
+        {category && (
           <div className="add-menu-3-section">
             <div className="add-menu-3-section-text">Enter spent sum</div>
             <div className="add-menu-3-section-form">
@@ -256,11 +265,13 @@ function AddMenu({
                 placeholder="-€"
                 value={amount}
                 onChange={handleChangeAmount}
+                step="1"
+                min="1"
               ></input>
             </div>
           </div>
         )}
-        {amount !== "" && (
+        {category && (
           <div className="add-menu-4-section">
             <div className="add-menu-4-section-text">Date of spending</div>
             <div className="add-menu-4-section-form">
@@ -272,7 +283,8 @@ function AddMenu({
             </div>
           </div>
         )}
-        {date && category === "food" && (
+
+        {category == "food" && (
           <div className="add-menu-5-section">
             <div className="add-menu-5-section-text">
               Select person who paid
@@ -286,9 +298,7 @@ function AddMenu({
             </div>
           </div>
         )}
-
-        {date &&
-          category === "utilities" &&
+        {category === "utilities" &&
           (subCategory === "hot-water" || subCategory === "cold-water") && (
             <div className="add-menu-5-section">
               <div className="add-menu-5-section-text">Input water usage</div>
@@ -302,8 +312,7 @@ function AddMenu({
               </div>
             </div>
           )}
-
-        {date && category === "utilities" && subCategory === "electricity" && (
+        {category === "utilities" && subCategory === "electricity" && (
           <div className="add-menu-5-section">
             <div className="add-menu-5-section-text">
               Input electricity usage
@@ -318,8 +327,7 @@ function AddMenu({
             </div>
           </div>
         )}
-
-        {date && category === "utilities" && subCategory === "gas" && (
+        {category === "utilities" && subCategory === "gas" && (
           <div className="add-menu-5-section">
             <div className="add-menu-5-section-text">Input gas usage</div>
             <div className="add-menu-5-section-form">
@@ -328,15 +336,23 @@ function AddMenu({
                 placeholder="-m³"
                 value={usage}
                 onChange={handleChangeUsage}
-                step="0.01"
-                min="0.01"
+                step="1"
+                min="1"
               />
             </div>
           </div>
         )}
-
-        {(category === "utilities" && usage && !editModeOn) ||
-        (category === "food" && date && author && !editModeOn) ? (
+        {(category === "utilities" &&
+          usage &&
+          subCategory &&
+          amount &&
+          !editModeOn) ||
+        (category === "food" &&
+          date &&
+          author &&
+          amount &&
+          subCategory &&
+          !editModeOn) ? (
           <div className="add-menu-footer">
             <button
               type="button"
@@ -359,9 +375,18 @@ function AddMenu({
             </button>
           </div>
         ) : null}
-
-        {(category === "utilities" && date && editModeOn) ||
-        (category === "food" && date && author && editModeOn) ? (
+        {(category === "utilities" &&
+          date &&
+          usage &&
+          subCategory &&
+          amount &&
+          editModeOn) ||
+        (category === "food" &&
+          date &&
+          author &&
+          amount &&
+          subCategory &&
+          editModeOn) ? (
           <div className="add-menu-footer">
             <button
               type="button"
