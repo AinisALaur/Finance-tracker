@@ -17,14 +17,14 @@ function ImportButton({ setBlurOn }) {
   );
 }
 
-function ExportButton({ setBlurOn }) {
+function ExportButton({ onExport }) {
   return (
     <>
       <img
         src={exportIcon}
         alt="Export"
         className="button"
-        onClick={() => setBlurOn((prev) => !prev)}
+        onClick={onExport}
       />
     </>
   );

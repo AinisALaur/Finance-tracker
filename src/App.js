@@ -255,6 +255,38 @@ function App() {
     setUsage(instance.usage);
   }
 
+  function handleExport() {
+    let text = "";
+    for (const category in instances) {
+      instances[category].forEach((instance) => {
+        if (category === "utilities") {
+          text += instance.id + " ";
+          text += category + " ";
+          text += instance.name + " ";
+          text += instance.amount + " ";
+          text += instance.usage + " ";
+          text += formatDateForInput(instance.date) + " ";
+        } else {
+          text += instance.id + " ";
+          text += category + " ";
+          text += instance.name + " ";
+          text += instance.amount + " ";
+          text += instance.author + " ";
+          text += formatDateForInput(instance.date) + " ";
+        }
+        text += "\n";
+      });
+    }
+
+    const blob = new Blob([text], { type: "text/plain" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "exportedData.txt";
+    link.click();
+
+    URL.revokeObjectURL(link.href);
+  }
+
   return (
     <>
       {blurOn && (
@@ -334,7 +366,7 @@ function App() {
       </div>
 
       <div className="options">
-        <ExportButton setBlurOn={setBlurOn} />
+        <ExportButton onExport={handleExport} />
         <ImportButton setBlurOn={setBlurOn} />
         <AddButton
           setBlurOn={setBlurOn}
