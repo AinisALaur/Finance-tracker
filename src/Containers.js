@@ -3,7 +3,34 @@ import closeIcon from "./close.png";
 import { useState, useEffect } from "react";
 
 function DataContainer({ className, children }) {
-  return <div className={`data-container ${className || ""}`}>{children}</div>;
+  return (
+    <>
+      <div className={`data-container ${className || ""}`}>{children}</div>;
+    </>
+  );
+}
+
+function DataContainerOptions() {
+  return (
+    <>
+      <div className="data-container-options">
+        <select>
+          <option value="all">All categories</option>
+          <option value="hot-water">Hot water</option>
+          <option value="cold-water">Cold water</option>
+          <option value="electricity">Electricity</option>
+          <option value="gas">Gas</option>
+        </select>
+
+        <select>
+          <option value="dateDescending">Date descending</option>
+          <option value="dateAscending">Date ascending</option>
+          <option value="sumDescending">Sum descending</option>
+          <option value="sumAscending">Sum ascending</option>
+        </select>
+      </div>
+    </>
+  );
 }
 
 function TextBox({ children }) {
@@ -288,9 +315,9 @@ function AddMenu({
               type="button"
               onClick={() => {
                 onEditInstance(
-                  id, // instance ID
-                  givenCategory, // old category
-                  category, // new category
+                  id,
+                  givenCategory,
+                  category,
                   subCategory,
                   parseFloat(amount),
                   date,
@@ -487,4 +514,5 @@ export {
   Instance,
   MonthlyData,
   ImportMenu,
+  DataContainerOptions,
 };

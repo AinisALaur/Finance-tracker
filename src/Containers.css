@@ -1,5 +1,13 @@
+.data-container-options {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .data-container {
-  height: 89%;
+  height: 79%;
   width: 100%;
   overflow-y: auto;
 }

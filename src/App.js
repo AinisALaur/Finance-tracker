@@ -9,6 +9,7 @@ import {
   Instance,
   MonthlyData,
   ImportMenu,
+  DataContainerOptions,
 } from "./Containers";
 import { ImportButton, ExportButton, AddButton } from "./Buttons";
 
@@ -359,6 +360,7 @@ function App() {
         <Container className="util-container">
           <TextBox>Utilities</TextBox>
           <DataContainer id="util-data">
+            <DataContainerOptions></DataContainerOptions>
             {instances.utilities
               .slice()
               .sort((a, b) => new Date(b.date) - new Date(a.date))
@@ -375,6 +377,7 @@ function App() {
         <Container className="food-container">
           <TextBox>Shopping</TextBox>
           <DataContainer id="food-data">
+            <DataContainerOptions></DataContainerOptions>
             {instances.food
               .slice()
               .sort((a, b) => new Date(b.date) - new Date(a.date))
