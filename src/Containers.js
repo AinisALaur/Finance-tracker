@@ -121,8 +121,6 @@ function AddMenu({
               setBlurOn((prev) => !prev);
               setAddMenuOn((prev) => !prev);
             }}
-            width="10px"
-            height="10px"
           />
         </div>
       </div>
@@ -432,4 +430,44 @@ function MonthlyData({
   );
 }
 
-export { Container, TextBox, DataContainer, AddMenu, Instance, MonthlyData };
+function ImportMenu({ setBlurOn, setImportMenuOn }) {
+  return (
+    <div className="import-menu">
+      <div className="import-menu-header">
+        <div className="import-menu-header-title">
+          Choose a file to import data from
+        </div>
+        <div className="import-menu-header-close">
+          <img
+            src={closeIcon}
+            alt="Close"
+            className="closeButton"
+            onClick={() => {
+              setBlurOn((prev) => !prev);
+              setImportMenuOn((prev) => !prev);
+            }}
+          />
+        </div>
+      </div>
+
+      <div className="import-menu-body">
+        <div className="import-menu-header-choose-file">
+          <input type="file"></input>
+        </div>
+      </div>
+      <div className="import-menu-footer">
+        <button>Import data</button>
+      </div>
+    </div>
+  );
+}
+
+export {
+  Container,
+  TextBox,
+  DataContainer,
+  AddMenu,
+  Instance,
+  MonthlyData,
+  ImportMenu,
+};

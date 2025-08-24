@@ -4,14 +4,17 @@ import importIcon from "./import.png";
 import exportIcon from "./export.png";
 import addIcon from "./add.png";
 
-function ImportButton({ setBlurOn }) {
+function ImportButton({ setBlurOn, setimportMenuOn }) {
   return (
     <>
       <img
         src={importIcon}
         alt="Import"
         className="button"
-        onClick={() => setBlurOn((prev) => !prev)}
+        onClick={() => {
+          setBlurOn((prev) => !prev);
+          setimportMenuOn(true);
+        }}
       />
     </>
   );

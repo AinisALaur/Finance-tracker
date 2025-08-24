@@ -8,6 +8,7 @@ import {
   AddMenu,
   Instance,
   MonthlyData,
+  ImportMenu,
 } from "./Containers";
 import {
   SettingsButton,
@@ -19,6 +20,7 @@ import {
 function App() {
   const [blurOn, setBlurOn] = useState(false);
   const [addMenuOn, setAddMenuOn] = useState(false);
+  const [importMenuOn, setImportMenuOn] = useState(false);
   const [deleteInstance, setDeleteInstance] = useState("");
   const [instances, setInstances] = useState({ utilities: [], food: [] });
   const [editModeOn, setEditModeOn] = useState(false);
@@ -308,6 +310,13 @@ function App() {
               onEditInstance={handleEditInstance}
             ></AddMenu>
           )}
+
+          {importMenuOn && (
+            <ImportMenu
+              setBlurOn={setBlurOn}
+              setImportMenuOn={setImportMenuOn}
+            ></ImportMenu>
+          )}
         </div>
       )}
 
@@ -367,7 +376,7 @@ function App() {
 
       <div className="options">
         <ExportButton onExport={handleExport} />
-        <ImportButton setBlurOn={setBlurOn} />
+        <ImportButton setBlurOn={setBlurOn} setimportMenuOn={setImportMenuOn} />
         <AddButton
           setBlurOn={setBlurOn}
           setAddMenuOn={setAddMenuOn}
