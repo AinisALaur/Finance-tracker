@@ -10,23 +10,65 @@ function DataContainer({ className, children }) {
   );
 }
 
-function DataContainerOptions() {
+function DataContainerOptionsUtilities({
+  setFilterUtilities,
+  setSortUtilities,
+}) {
+  const handleChangeSort = (e) => {
+    setSortUtilities(e.target.value);
+  };
+
+  const handleChangeFilter = (e) => {
+    setFilterUtilities(e.target.value);
+  };
+
   return (
     <>
       <div className="data-container-options">
-        <select>
-          <option value="all">All categories</option>
-          <option value="hot-water">Hot water</option>
-          <option value="cold-water">Cold water</option>
-          <option value="electricity">Electricity</option>
-          <option value="gas">Gas</option>
+        <select onChange={handleChangeFilter}>
+          <option value="all-utilities">All categories</option>
+          <option value="hot-water-utilities">Hot water</option>
+          <option value="cold-water-utilities">Cold water</option>
+          <option value="electricity-utilities">Electricity</option>
+          <option value="gas-utilities">Gas</option>
         </select>
 
-        <select>
-          <option value="dateDescending">Date descending</option>
-          <option value="dateAscending">Date ascending</option>
-          <option value="sumDescending">Sum descending</option>
-          <option value="sumAscending">Sum ascending</option>
+        <select onChange={handleChangeSort}>
+          <option value="dateDescending-utilities">Date descending</option>
+          <option value="dateAscending-utilities">Date ascending</option>
+          <option value="sumDescending-utilities">Sum descending</option>
+          <option value="sumAscending-utilities">Sum ascending</option>
+        </select>
+      </div>
+    </>
+  );
+}
+
+function DataContainerOptionsFood({ setFilterFood, setSortFood }) {
+  const handleChangeSort = (e) => {
+    setSortFood(e.target.value);
+  };
+
+  const handleChangeFilter = (e) => {
+    setFilterFood(e.target.value);
+  };
+
+  return (
+    <>
+      <div className="data-container-options">
+        <select onChange={handleChangeFilter}>
+          <option value="all-food">All shops</option>
+          <option value="lidl">Lidl</option>
+          <option value="maxima">Maxima</option>
+          <option value="iki">IKI</option>
+          <option value="other">Other</option>
+        </select>
+
+        <select onChange={handleChangeSort}>
+          <option value="dateDescending-food">Date descending</option>
+          <option value="dateAscending-food">Date ascending</option>
+          <option value="sumDescending-food">Sum descending</option>
+          <option value="sumAscending-food">Sum ascending</option>
         </select>
       </div>
     </>
@@ -514,5 +556,6 @@ export {
   Instance,
   MonthlyData,
   ImportMenu,
-  DataContainerOptions,
+  DataContainerOptionsUtilities,
+  DataContainerOptionsFood,
 };

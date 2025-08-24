@@ -9,7 +9,8 @@ import {
   Instance,
   MonthlyData,
   ImportMenu,
-  DataContainerOptions,
+  DataContainerOptionsUtilities,
+  DataContainerOptionsFood,
 } from "./Containers";
 import { ImportButton, ExportButton, AddButton } from "./Buttons";
 
@@ -20,6 +21,12 @@ function App() {
   const [deleteInstance, setDeleteInstance] = useState("");
   const [instances, setInstances] = useState({ utilities: [], food: [] });
   const [editModeOn, setEditModeOn] = useState(false);
+  const [filterFood, setFilterFood] = useState("all-food");
+  const [sortFood, setSortFood] = useState("dateDescending-food");
+  const [filterUtilities, setFilterUtilities] = useState("all-utilities");
+  const [sortUtilities, setSortUtilities] = useState(
+    "dateDescending-utilities"
+  );
 
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
@@ -360,10 +367,21 @@ function App() {
         <Container className="util-container">
           <TextBox>Utilities</TextBox>
           <DataContainer id="util-data">
-            <DataContainerOptions></DataContainerOptions>
+            <DataContainerOptionsUtilities
+              setFilterUtilities={setFilterUtilities}
+              setSortUtilities={setSortUtilities}
+            ></DataContainerOptionsUtilities>
             {instances.utilities
               .slice()
-              .sort((a, b) => new Date(b.date) - new Date(a.date))
+              .sort((a, b) =>
+                sortUtilities === "dateDescending-utilities"
+                  ? new Date(b.date) - new Date(a.date)
+                  : sortUtilities === "sumDescending-utilities"
+                  ? b.amount - a.amount
+                  : sortUtilities === "sumAscending-utilities"
+                  ? a.amount - b.amount
+                  : new Date(a.date) - new Date(b.date)
+              )
               .map((inst) => (
                 <Instance
                   key={inst.id}
@@ -377,10 +395,21 @@ function App() {
         <Container className="food-container">
           <TextBox>Shopping</TextBox>
           <DataContainer id="food-data">
-            <DataContainerOptions></DataContainerOptions>
+            <DataContainerOptionsFood
+              setFilterFood={setFilterFood}
+              setSortFood={setSortFood}
+            ></DataContainerOptionsFood>
             {instances.food
               .slice()
-              .sort((a, b) => new Date(b.date) - new Date(a.date))
+              .sort((a, b) =>
+                sortFood === "dateDescending-food"
+                  ? new Date(b.date) - new Date(a.date)
+                  : sortFood === "sumDescending-food"
+                  ? b.amount - a.amount
+                  : sortFood === "sumAscending-food"
+                  ? a.amount - b.amount
+                  : new Date(a.date) - new Date(b.date)
+              )
               .map((inst) => (
                 <Instance
                   key={inst.id}
