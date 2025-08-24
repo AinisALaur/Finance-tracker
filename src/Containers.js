@@ -1,6 +1,6 @@
 import "./Containers.css";
 import closeIcon from "./close.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function DataContainer({ className, children }) {
   return <div className={`data-container ${className || ""}`}>{children}</div>;
@@ -14,12 +14,31 @@ function Container({ children, className }) {
   return <div className={`my-container ${className || ""}`}>{children}</div>;
 }
 
-function AddMenu({ setBlurOn, setAddMenuOn, onCreateInstance }) {
-  const [category, setCategory] = useState("");
-  const [subCategory, setSubCategory] = useState("");
-  const [amount, setAmount] = useState("");
-  const [date, setDate] = useState("");
-  const [author, setAuthor] = useState("");
+function AddMenu({
+  setBlurOn,
+  setAddMenuOn,
+  onCreateInstance,
+  givenCategory,
+  givenSubCategory,
+  givenAmount,
+  givenDate,
+  givenAuthor,
+  editModeOn,
+  setEditModeOn,
+}) {
+  const [category, setCategory] = useState(givenCategory);
+  const [subCategory, setSubCategory] = useState(givenSubCategory);
+  const [amount, setAmount] = useState(givenAmount);
+  const [date, setDate] = useState(givenDate);
+  const [author, setAuthor] = useState(givenAuthor);
+
+  useEffect(() => {
+    setCategory(givenCategory);
+    setSubCategory(givenSubCategory);
+    setAmount(givenAmount);
+    setDate(givenDate);
+    setAuthor(givenAuthor);
+  }, [givenCategory, givenSubCategory, givenAmount, givenDate, givenAuthor]);
 
   const handleChangeCategory = (e) => {
     setCategory(e.target.value);
@@ -130,7 +149,7 @@ function AddMenu({ setBlurOn, setAddMenuOn, onCreateInstance }) {
           </div>
         )}
 
-        {amount.trim() !== "" && (
+        {amount !== "" && (
           <div className="add-menu-4-section">
             <div className="add-menu-4-section-text">Date of spending</div>
             <div className="add-menu-4-section-form">
@@ -167,7 +186,7 @@ function AddMenu({ setBlurOn, setAddMenuOn, onCreateInstance }) {
                 onCreateInstance(
                   category,
                   subCategory,
-                  amount.trim() + "€",
+                  amount + "€",
                   date,
                   author
                 );
@@ -189,12 +208,30 @@ function TypeCircle({ className }) {
   return <div className={`type-circle ${className || ""}`}></div>;
 }
 
-function Instance({ id, className, name, author, date, amount, onDelete }) {
+function Instance({
+  id,
+  className,
+  name,
+  author,
+  date,
+  amount,
+  onDelete,
+  onEdit,
+}) {
   return (
     <>
       <div className="instance-container">
         <div className="instance-on-hover">
-          <button className="instance-on-hover-edit">Edit</button>
+          <button
+            className="instance-on-hover-edit"
+            onClick={() => {
+              {
+                onEdit(id);
+              }
+            }}
+          >
+            Edit
+          </button>
           <button
             className="instance-on-hover-delete"
             onClick={() => onDelete(id)}

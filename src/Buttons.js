@@ -44,7 +44,15 @@ function ExportButton({ setBlurOn }) {
   );
 }
 
-function AddButton({ setBlurOn, setAddMenuOn }) {
+function AddButton({
+  setBlurOn,
+  setAddMenuOn,
+  setCategory,
+  setSubCategory,
+  setAmount,
+  setDate,
+  setAuthor,
+}) {
   return (
     <>
       <img
@@ -54,6 +62,11 @@ function AddButton({ setBlurOn, setAddMenuOn }) {
         onClick={() => {
           setBlurOn((prev) => !prev);
           setAddMenuOn((prev) => !prev);
+          setCategory("");
+          setSubCategory("");
+          setAuthor("");
+          setDate("");
+          setAmount("");
         }}
       />
     </>
