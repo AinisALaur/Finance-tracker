@@ -283,27 +283,33 @@ function App() {
         <Container className="util-container">
           <TextBox>Utilities</TextBox>
           <DataContainer id="util-data">
-            {instances.utilities.map((inst) => (
-              <Instance
-                key={inst.id}
-                {...inst}
-                onDelete={handleDeleteInstance}
-                onEdit={handleEdit}
-              />
-            ))}
+            {instances.utilities
+              .slice()
+              .sort((a, b) => new Date(b.date) - new Date(a.date))
+              .map((inst) => (
+                <Instance
+                  key={inst.id}
+                  {...inst}
+                  onDelete={handleDeleteInstance}
+                  onEdit={handleEdit}
+                />
+              ))}
           </DataContainer>
         </Container>
         <Container className="food-container">
           <TextBox>Shopping</TextBox>
           <DataContainer id="food-data">
-            {instances.food.map((inst) => (
-              <Instance
-                key={inst.id}
-                {...inst}
-                onDelete={handleDeleteInstance}
-                onEdit={handleEdit}
-              />
-            ))}
+            {instances.food
+              .slice()
+              .sort((a, b) => new Date(b.date) - new Date(a.date))
+              .map((inst) => (
+                <Instance
+                  key={inst.id}
+                  {...inst}
+                  onDelete={handleDeleteInstance}
+                  onEdit={handleEdit}
+                />
+              ))}
           </DataContainer>
         </Container>
         <Container className="statis-container">
