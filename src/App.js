@@ -27,6 +27,7 @@ function App() {
   const [sortUtilities, setSortUtilities] = useState(
     "dateDescending-utilities"
   );
+  const [filterAuthor, setFilterAuthor] = useState("all-authors");
 
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
@@ -405,14 +406,24 @@ function App() {
             <DataContainerOptionsFood
               setFilterFood={setFilterFood}
               setSortFood={setSortFood}
+              setAuthor={setFilterAuthor}
             ></DataContainerOptionsFood>
             {instances.food
               .slice()
-              .filter((inst) =>
-                ["lidl", "maxima", "iki", "other"].includes(filterFood)
+              .filter((inst) => {
+                const nameMatch = ["lidl", "maxima", "iki", "other"].includes(
+                  filterFood
+                )
                   ? inst.name === filterFood
-                  : true
-              )
+                  : true;
+
+                const authorMatch = ["ainis", "emilė"].includes(filterAuthor)
+                  ? inst.author === filterAuthor
+                  : true;
+
+                return nameMatch && authorMatch;
+              })
+
               .sort((a, b) =>
                 sortFood === "dateDescending-food"
                   ? new Date(b.date) - new Date(a.date)

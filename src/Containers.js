@@ -44,13 +44,17 @@ function DataContainerOptionsUtilities({
   );
 }
 
-function DataContainerOptionsFood({ setFilterFood, setSortFood }) {
+function DataContainerOptionsFood({ setFilterFood, setSortFood, setAuthor }) {
   const handleChangeSort = (e) => {
     setSortFood(e.target.value);
   };
 
   const handleChangeFilter = (e) => {
     setFilterFood(e.target.value);
+  };
+
+  const handleChangeAuthor = (e) => {
+    setAuthor(e.target.value);
   };
 
   return (
@@ -62,6 +66,12 @@ function DataContainerOptionsFood({ setFilterFood, setSortFood }) {
           <option value="maxima">Maxima</option>
           <option value="iki">IKI</option>
           <option value="other">Other</option>
+        </select>
+
+        <select onChange={handleChangeAuthor}>
+          <option value="all-authors">All</option>
+          <option value="ainis">Ainis</option>
+          <option value="emilė  ">Emilė</option>
         </select>
 
         <select onChange={handleChangeSort}>
