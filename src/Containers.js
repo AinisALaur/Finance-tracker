@@ -1,4 +1,5 @@
 import "./Containers.css";
+import "./Buttons.css";
 import closeIcon from "./close.png";
 import { useState, useEffect } from "react";
 
@@ -371,6 +372,7 @@ function AddMenu({
           !editModeOn) ? (
           <div className="add-menu-footer">
             <button
+              className="button-17"
               type="button"
               onClick={() => {
                 onCreateInstance(
@@ -405,6 +407,7 @@ function AddMenu({
           editModeOn) ? (
           <div className="add-menu-footer">
             <button
+              className="button-17"
               type="button"
               onClick={() => {
                 onEditInstance(
@@ -443,15 +446,17 @@ function Instance({
   date,
   amount,
   usage,
-  onDelete,
   onEdit,
+  setDeleteId,
+  setDeleteMenuOn,
+  setBlurOn,
 }) {
   return (
     <>
       <div className="instance-container">
         <div className="instance-on-hover">
           <button
-            className="instance-on-hover-edit"
+            className="instance-on-hover-edit button-16-edit"
             onClick={() => {
               {
                 onEdit(id);
@@ -461,8 +466,12 @@ function Instance({
             Edit
           </button>
           <button
-            className="instance-on-hover-delete"
-            onClick={() => onDelete(id)}
+            className="instance-on-hover-delete button-16-delete"
+            onClick={() => {
+              setDeleteId(id);
+              setDeleteMenuOn(true);
+              setBlurOn(true);
+            }}
           >
             Delete
           </button>
@@ -585,6 +594,7 @@ function ImportMenu({ setBlurOn, setImportMenuOn, onImport }) {
       <div className="import-menu-footer">
         {importFile && (
           <button
+            className="button-17"
             onClick={() => {
               setBlurOn((prev) => !prev);
               setImportMenuOn((prev) => !prev);
@@ -594,6 +604,37 @@ function ImportMenu({ setBlurOn, setImportMenuOn, onImport }) {
             Import data
           </button>
         )}
+      </div>
+    </div>
+  );
+}
+
+function DeleteMenu({ setBlurOn, setDeleteMenuOn, onDelete, deleteId }) {
+  return (
+    <div className="delete-menu">
+      <div className="delete-menu-tittle">
+        Are you sure you want to delete the instance?
+      </div>
+      <div className="delete-menu-buttons">
+        <button
+          className="button-16-edit"
+          onClick={() => {
+            setBlurOn(false);
+            setDeleteMenuOn(false);
+          }}
+        >
+          Cancel
+        </button>
+        <button
+          className="button-16-delete"
+          onClick={() => {
+            onDelete(deleteId);
+            setBlurOn(false);
+            setDeleteMenuOn(false);
+          }}
+        >
+          Confirm
+        </button>
       </div>
     </div>
   );
@@ -609,4 +650,5 @@ export {
   ImportMenu,
   DataContainerOptionsUtilities,
   DataContainerOptionsFood,
+  DeleteMenu,
 };

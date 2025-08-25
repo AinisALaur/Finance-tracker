@@ -11,12 +11,15 @@ import {
   ImportMenu,
   DataContainerOptionsUtilities,
   DataContainerOptionsFood,
+  DeleteMenu,
 } from "./Containers";
 import { ImportButton, ExportButton, AddButton } from "./Buttons";
 
 function App() {
   const [blurOn, setBlurOn] = useState(false);
   const [addMenuOn, setAddMenuOn] = useState(false);
+  const [deleteMenuOn, setDeleteMenuOn] = useState(false);
+  const [deleteId, setDeleteId] = useState("");
   const [importMenuOn, setImportMenuOn] = useState(false);
   const [deleteInstance, setDeleteInstance] = useState("");
   const [instances, setInstances] = useState({ utilities: [], food: [] });
@@ -219,6 +222,8 @@ function App() {
   }
 
   function handleDeleteInstance(id) {
+    if (id == "") return;
+
     setInstances((prev) => {
       const newInstances = {};
       for (const category in prev) {
@@ -374,6 +379,15 @@ function App() {
               onImport={handleImport}
             ></ImportMenu>
           )}
+
+          {deleteMenuOn && (
+            <DeleteMenu
+              setBlurOn={setBlurOn}
+              setDeleteMenuOn={setDeleteMenuOn}
+              onDelete={handleDeleteInstance}
+              deleteId={deleteId}
+            ></DeleteMenu>
+          )}
         </div>
       )}
 
@@ -407,8 +421,10 @@ function App() {
                 <Instance
                   key={inst.id}
                   {...inst}
-                  onDelete={handleDeleteInstance}
                   onEdit={handleEdit}
+                  setDeleteId={setDeleteId}
+                  setBlurOn={setBlurOn}
+                  setDeleteMenuOn={setDeleteMenuOn}
                 />
               ))}
           </DataContainer>
@@ -450,8 +466,10 @@ function App() {
                 <Instance
                   key={inst.id}
                   {...inst}
-                  onDelete={handleDeleteInstance}
                   onEdit={handleEdit}
+                  setDeleteId={setDeleteId}
+                  setBlurOn={setBlurOn}
+                  setDeleteMenuOn={setDeleteMenuOn}
                 />
               ))}
           </DataContainer>
