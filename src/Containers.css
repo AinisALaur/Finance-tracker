@@ -360,3 +360,158 @@
   justify-content: center;
   align-items: center;
 }
+
+.selectdiv {
+  position: relative;
+  width: 220px;
+  margin: 10px 0;
+}
+
+.selectdiv select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  width: 100%;
+  padding: 12px 40px 12px 15px;
+  font-size: 16px;
+  font-weight: 500;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.selectdiv select:hover {
+  border-color: #666;
+}
+.selectdiv select:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 6px rgba(74, 144, 226, 0.4);
+}
+
+.selectdiv::after {
+  content: "▼";
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #666;
+  pointer-events: none;
+}
+
+
+.selectdivOpt {
+  position: relative;
+  width: 140px;
+  margin: 10px 0;
+}
+
+.selectdivOpt select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  width: 100%;
+  padding: 8px 30px 8px 5px;
+  font-size: 14px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  border-radius: 0;
+  background-color: transparent;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.25s ease;
+  text-align: center;
+}
+
+.selectdivOpt select:hover {
+  border-bottom-color: #666;
+}
+.selectdivOpt select:focus {
+  outline: none;
+  border-bottom-color: #4a90e2;
+}
+
+.selectdivOpt::after {
+  content: "▼";
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #666;
+  pointer-events: none;
+}
+
+.amountWrapper {
+  position: relative;
+  width: 180px;
+  display: flex;
+  align-items: center;
+}
+
+.currencySymbol {
+  position: absolute;
+  right: 8px;
+  color: #666;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.amountInput {
+  width: 100%;
+  padding: 8px 25px 8px 10px;
+  font-size: 14px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  background-color: transparent;
+  text-align: center;
+  height: 32px;
+  box-sizing: border-box;
+  color: #333;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.amountInput:focus {
+  outline: none;
+  border-bottom-color: #4a90e2;
+  box-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+}
+
+.amountInput:hover {
+  border-bottom-color: #666;
+}
+
+
+.dateInput {
+  width: 180px;              
+  padding: 8px 10px;         
+  font-size: 14px;
+  border: none;
+  border-bottom: 2px solid #ccc;  
+  background-color: transparent;
+  color: #333;
+  text-align: center;        
+  height: 32px;          
+  box-sizing: border-box;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dateInput::placeholder {
+  color: #aaa;                
+}
+
+.dateInput:focus {
+  outline: none;
+  border-bottom-color: #4a90e2; 
+  box-shadow: 0 2px 4px rgba(74, 144, 226, 0.2);
+}
+
+.dateInput:hover {
+  border-bottom-color: #666;  
+}

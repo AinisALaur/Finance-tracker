@@ -25,20 +25,24 @@ function DataContainerOptionsUtilities({
   return (
     <>
       <div className="data-container-options">
-        <select onChange={handleChangeFilter}>
-          <option value="all-utilities">All categories</option>
-          <option value="hot-water">Hot water</option>
-          <option value="cold-water">Cold water</option>
-          <option value="electricity">Electricity</option>
-          <option value="gas">Gas</option>
-        </select>
+        <div className="selectdivOpt">
+          <select onChange={handleChangeFilter}>
+            <option value="all-utilities">All categories</option>
+            <option value="hot-water">Hot water</option>
+            <option value="cold-water">Cold water</option>
+            <option value="electricity">Electricity</option>
+            <option value="gas">Gas</option>
+          </select>
+        </div>
 
-        <select onChange={handleChangeSort}>
-          <option value="dateDescending-utilities">Date descending</option>
-          <option value="dateAscending-utilities">Date ascending</option>
-          <option value="sumDescending-utilities">Amount descending</option>
-          <option value="sumAscending-utilities">Amount ascending</option>
-        </select>
+        <div className="selectdivOpt">
+          <select onChange={handleChangeSort}>
+            <option value="dateDescending-utilities">Date descending</option>
+            <option value="dateAscending-utilities">Date ascending</option>
+            <option value="sumDescending-utilities">Amount descending</option>
+            <option value="sumAscending-utilities">Amount ascending</option>
+          </select>
+        </div>
       </div>
     </>
   );
@@ -60,26 +64,32 @@ function DataContainerOptionsFood({ setFilterFood, setSortFood, setAuthor }) {
   return (
     <>
       <div className="data-container-options">
-        <select onChange={handleChangeFilter}>
-          <option value="all-food">All shops</option>
-          <option value="lidl">Lidl</option>
-          <option value="maxima">Maxima</option>
-          <option value="iki">IKI</option>
-          <option value="other">Other</option>
-        </select>
+        <div className="selectdivOpt">
+          <select onChange={handleChangeFilter}>
+            <option value="all-food">All shops</option>
+            <option value="lidl">Lidl</option>
+            <option value="maxima">Maxima</option>
+            <option value="iki">IKI</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
 
-        <select onChange={handleChangeAuthor}>
-          <option value="all-authors">All</option>
-          <option value="ainis">Ainis</option>
-          <option value="emilė">Emilė</option>
-        </select>
+        <div className="selectdivOpt">
+          <select onChange={handleChangeAuthor}>
+            <option value="all-authors">All</option>
+            <option value="ainis">Ainis</option>
+            <option value="emilė">Emilė</option>
+          </select>
+        </div>
 
-        <select onChange={handleChangeSort}>
-          <option value="dateDescending-food">Date descending</option>
-          <option value="dateAscending-food">Date ascending</option>
-          <option value="sumDescending-food">Amount descending</option>
-          <option value="sumAscending-food">Amount ascending</option>
-        </select>
+        <div className="selectdivOpt">
+          <select onChange={handleChangeSort}>
+            <option value="dateDescending-food">Date descending</option>
+            <option value="dateAscending-food">Date ascending</option>
+            <option value="sumDescending-food">Amount descending</option>
+            <option value="sumAscending-food">Amount ascending</option>
+          </select>
+        </div>
       </div>
     </>
   );
@@ -115,13 +125,6 @@ function AddMenu({
   const [id, setId] = useState(givenId);
   const [author, setAuthor] = useState(givenAuthor);
 
-  // const initialHideValue = editModeOn ? false : true;
-
-  // const [hideAmount, setHideAmount] = useState(initialHideValue);
-  // const [hideUsage, setHideUsage] = useState(initialHideValue);
-  // const [hideAuthor, setHideAuthor] = useState(initialHideValue);
-  // const [hideDate, setHideDate] = useState(initialHideValue);
-
   useEffect(() => {
     setId(givenId);
     setCategory(givenCategory);
@@ -150,14 +153,6 @@ function AddMenu({
   };
 
   const handleChangeSubCategory = (e) => {
-    const value = e.target.value;
-    // if (value == "") {
-    //   setHideAmount(true);
-    //   setHideDate(true);
-    //   category == "utilities" ? setHideUsage(true) : setHideAuthor(true);
-    // } else {
-    //   setHideAmount(false);
-    // }
     setSubCategory(e.target.value);
   };
 
@@ -169,7 +164,6 @@ function AddMenu({
       return;
     }
 
-    // setHideDate(false);
     setAmount(value);
   };
 
@@ -179,9 +173,6 @@ function AddMenu({
 
   const handleChangeAuthor = (e) => {
     setAuthor(e.target.value);
-    // if (!editModeOn) {
-    //   setUsage("");
-    // }
   };
 
   const handleChangeUsage = (e) => {
@@ -217,11 +208,13 @@ function AddMenu({
         <div className="add-menu-1-section">
           <div className="add-menu-1-section-text">Select instance section</div>
           <div className="add-menu-1-section-form">
-            <select value={category} onChange={handleChangeCategory}>
-              <option value="">--Not selected--</option>
-              <option value="utilities">Utilities</option>
-              <option value="food">Food</option>
-            </select>
+            <div className="selectdiv">
+              <select value={category} onChange={handleChangeCategory}>
+                <option value="">--Not selected--</option>
+                <option value="utilities">Utilities</option>
+                <option value="food">Food</option>
+              </select>
+            </div>
           </div>
         </div>
         {category === "food" && (
@@ -230,13 +223,15 @@ function AddMenu({
               Select a grocery store
             </div>
             <div className="add-menu-2-section-form">
-              <select value={subCategory} onChange={handleChangeSubCategory}>
-                <option value="">--Not selected--</option>
-                <option value="lidl">Lidl</option>
-                <option value="maxima">Maxima</option>
-                <option value="iki">IKI</option>
-                <option value="other">Other</option>
-              </select>
+              <div className="selectdiv">
+                <select value={subCategory} onChange={handleChangeSubCategory}>
+                  <option value="">--Not selected--</option>
+                  <option value="lidl">Lidl</option>
+                  <option value="maxima">Maxima</option>
+                  <option value="iki">IKI</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
             </div>
           </div>
         )}
@@ -246,13 +241,15 @@ function AddMenu({
               Select a type of utility
             </div>
             <div className="add-menu-2-section-form">
-              <select value={subCategory} onChange={handleChangeSubCategory}>
-                <option value="">--Not selected--</option>
-                <option value="hot-water">Hot water</option>
-                <option value="cold-water">Cold water</option>
-                <option value="electricity">Electricity</option>
-                <option value="gas">Gas</option>
-              </select>
+              <div className="selectdiv">
+                <select value={subCategory} onChange={handleChangeSubCategory}>
+                  <option value="">--Not selected--</option>
+                  <option value="hot-water">Hot water</option>
+                  <option value="cold-water">Cold water</option>
+                  <option value="electricity">Electricity</option>
+                  <option value="gas">Gas</option>
+                </select>
+              </div>
             </div>
           </div>
         )}
@@ -260,14 +257,17 @@ function AddMenu({
           <div className="add-menu-3-section">
             <div className="add-menu-3-section-text">Enter spent sum</div>
             <div className="add-menu-3-section-form">
-              <input
-                type="number"
-                placeholder="-€"
-                value={amount}
-                onChange={handleChangeAmount}
-                step="1"
-                min="1"
-              ></input>
+              <div className="amountWrapper">
+                <input
+                  type="number"
+                  value={amount}
+                  onChange={handleChangeAmount}
+                  step="1"
+                  min="1"
+                  className="amountInput"
+                />
+                <span className="currencySymbol">€</span>
+              </div>
             </div>
           </div>
         )}
@@ -279,7 +279,8 @@ function AddMenu({
                 type="date"
                 value={date}
                 onChange={handleChangeDate}
-              ></input>
+                className="dateInput"
+              />
             </div>
           </div>
         )}
@@ -290,11 +291,13 @@ function AddMenu({
               Select person who paid
             </div>
             <div className="add-menu-5-section-form">
-              <select value={author} onChange={handleChangeAuthor}>
-                <option value="">--Not selected--</option>
-                <option value="ainis">Ainis</option>
-                <option value="emilė">Emilė</option>
-              </select>
+              <div className="selectdiv">
+                <select value={author} onChange={handleChangeAuthor}>
+                  <option value="">--Not selected--</option>
+                  <option value="ainis">Ainis</option>
+                  <option value="emilė">Emilė</option>
+                </select>
+              </div>
             </div>
           </div>
         )}
@@ -303,12 +306,17 @@ function AddMenu({
             <div className="add-menu-5-section">
               <div className="add-menu-5-section-text">Input water usage</div>
               <div className="add-menu-5-section-form">
-                <input
-                  type="number"
-                  placeholder="-m³"
-                  value={usage}
-                  onChange={handleChangeUsage}
-                />
+                <div className="amountWrapper">
+                  <input
+                    type="number"
+                    value={usage}
+                    onChange={handleChangeUsage}
+                    step="1"
+                    min="1"
+                    className="amountInput"
+                  />
+                  <span className="currencySymbol">m³</span>
+                </div>
               </div>
             </div>
           )}
@@ -318,12 +326,17 @@ function AddMenu({
               Input electricity usage
             </div>
             <div className="add-menu-5-section-form">
-              <input
-                type="number"
-                placeholder="-kWh"
-                value={usage}
-                onChange={handleChangeUsage}
-              ></input>
+              <div className="amountWrapper">
+                <input
+                  type="number"
+                  value={usage}
+                  onChange={handleChangeUsage}
+                  step="1"
+                  min="1"
+                  className="amountInput"
+                />
+                <span className="currencySymbol">kWh</span>
+              </div>
             </div>
           </div>
         )}
@@ -331,14 +344,17 @@ function AddMenu({
           <div className="add-menu-5-section">
             <div className="add-menu-5-section-text">Input gas usage</div>
             <div className="add-menu-5-section-form">
-              <input
-                type="number"
-                placeholder="-m³"
-                value={usage}
-                onChange={handleChangeUsage}
-                step="1"
-                min="1"
-              />
+              <div className="amountWrapper">
+                <input
+                  type="number"
+                  value={usage}
+                  onChange={handleChangeUsage}
+                  step="1"
+                  min="1"
+                  className="amountInput"
+                />
+                <span className="currencySymbol">m³</span>
+              </div>
             </div>
           </div>
         )}
