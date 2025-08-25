@@ -286,7 +286,7 @@ function AddMenu({
           </div>
         )}
 
-        {category == "food" && (
+        {category === "food" && (
           <div className="add-menu-5-section">
             <div className="add-menu-5-section-text">
               Select person who paid
@@ -456,17 +456,15 @@ function Instance({
       <div className="instance-container">
         <div className="instance-on-hover">
           <button
-            className="instance-on-hover-edit button-16-edit"
+            className="instance-on-hover-edit button-16 edit-button"
             onClick={() => {
-              {
-                onEdit(id);
-              }
+              onEdit(id);
             }}
           >
             Edit
           </button>
           <button
-            className="instance-on-hover-delete button-16-delete"
+            className="instance-on-hover-delete button-16 delete-button"
             onClick={() => {
               setDeleteId(id);
               setDeleteMenuOn(true);
@@ -613,11 +611,11 @@ function DeleteMenu({ setBlurOn, setDeleteMenuOn, onDelete, deleteId }) {
   return (
     <div className="delete-menu">
       <div className="delete-menu-tittle">
-        Are you sure you want to delete the instance?
+        Are you sure you want to delete this instance?
       </div>
       <div className="delete-menu-buttons">
         <button
-          className="button-16-edit"
+          className="button-16 cancel-button"
           onClick={() => {
             setBlurOn(false);
             setDeleteMenuOn(false);
@@ -626,7 +624,7 @@ function DeleteMenu({ setBlurOn, setDeleteMenuOn, onDelete, deleteId }) {
           Cancel
         </button>
         <button
-          className="button-16-delete"
+          className="button-16 confirm-button"
           onClick={() => {
             onDelete(deleteId);
             setBlurOn(false);

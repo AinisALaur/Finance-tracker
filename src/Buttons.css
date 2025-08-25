@@ -1,6 +1,78 @@
+@media (min-width: 1100px) {
+  :root {
+    --buttonHeight: 50px;
+    --buttonWidth: 50px;
+    --button17fontsize: 14px;
+    --button17Height: 48px;
+    --button16Width: 35px;
+    --button16Height1: 26px;
+    --button16FontSize1: 15px;
+    --button16Margin1: 60px;
+
+    --button16Width2: 120px;
+    --button16Height2: 50px;
+    --button16FontSize2: 18px;
+    --button16Margin2: 35px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1100px) {
+  :root {
+    --buttonHeight: 30px;
+    --buttonWidth: 30px;
+    --button17fontsize: 14px;
+    --button17Height: 48px;
+    --button16Width1: 5px;
+    --button16Height1: 20px;
+    --button16FontSize1: 8px;
+    --button16Margin1: 35px;
+
+    --button16Width2: 120px;
+    --button16Height2: 50px;
+    --button16FontSize2: 18px;
+    --button16Margin2: 35px;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --buttonHeight: 30px;
+    --buttonWidth: 30px;
+    --button17fontsize: 14px;
+    --button17Height: 48px;
+    --button16Width1: 5px;
+    --button16Height1: 20px;
+    --button16FontSize1: 8px;
+    --button16Margin1: 35px;
+
+    --button16Width2: 100px;
+    --button16Height2: 30px;
+    --button16FontSize2: 15px;
+    --button16Margin2: 35px;
+  }
+}
+
+@media (max-height: 600px) {
+  :root {
+    --buttonHeight: 20px;
+    --buttonWidth: 20px;
+    --button17fontsize: 10px;
+    --button17Height: 28px;
+    --button16Width1: 5px;
+    --button16Height1: 20px;
+    --button16FontSize1: 8px;
+    --button16Margin1: 35px;
+
+    --button16Width2: 100px;
+    --button16Height2: 30px;
+    --button16FontSize2: 15px;
+    --button16Margin2: 35px;
+  }
+}
+
 .button {
-  height: 50px;
-  width: 50px;
+  height: var(--buttonHeight);
+  width: var(--buttonWidth);
   margin-left: 20px;
   transition: filter 0.2s;
 }
@@ -24,9 +96,9 @@
   display: inline-flex;
   fill: currentcolor;
   font-family: "Google Sans", Roboto, Arial, sans-serif;
-  font-size: 14px;
+  font-size: var(--button17fontsize);
   font-weight: 500;
-  height: 48px;
+  height: var(--button17Height);
   justify-content: center;
   letter-spacing: 0.25px;
   line-height: normal;
@@ -87,35 +159,51 @@
     rgba(60, 64, 67, 0.15) 0 4px 8px 3px;
 }
 
-.button-16-delete,
-.button-16-edit {
+.button-16,
+.button-16 {
   background-color: #f8f9fa;
-  border: 1px solid #f8f9fa;
+  border: 1px solid black;
   border-radius: 4px;
   color: #3c4043;
   cursor: pointer;
   font-family: arial, sans-serif;
-  font-size: 15px;
-  margin: 60px;
-  height: 26px;
-  line-height: 27px;
-  min-width: 35px;
   padding: 0 16px;
-  text-align: center;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  white-space: pre;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
-.button-16-delete:hover {
+.delete-button,
+.edit-button {
+  font-size: var(--button16FontSize1);
+  margin: var(--button16Margin1);
+  height: var(--button16Height1);
+  width: var(--button16Width1);
+}
+
+.cancel-button,
+.confirm-button {
+  font-size: var(--button16FontSize2);
+  margin: var(--button16Margin2);
+  height: var(--button16Height2);
+  width: var(--button16Width2);
+}
+
+.delete-button:hover,
+.confirm-button:hover {
   background-color: rgb(161, 20, 20);
   border-color: #dadce0;
   box-shadow: rgba(0, 0, 0, 0.1) 0 1px 1px;
   color: #e7e8eb;
 }
 
-.button-16-edit:hover {
+.edit-button:hover,
+.cancel-button:hover {
   background-color: rgb(20, 165, 30);
   border-color: #dadce0;
   box-shadow: rgba(0, 0, 0, 0.1) 0 1px 1px;

@@ -1,15 +1,123 @@
-:root {
-  --menuColor: rgb(244, 241, 241);
-  --font: "Montserrat", sans-serif;
-  --fontSizeTittle: 30px;
-  --addMenuWidth: 900px;
-  --addMenuHeight: 600px;
-  --instanceOnHoverColor: rgb(108, 108, 108);
-  --instanceFontSize: 18px;
-  --circleDiameter: 60px;
-  --importMenuHeight: 200px;
-  --importMenuWidth: 400px;
-  --menuShadow: box-shadow: 13px 9px 77px -6px rgba(0, 0, 0, 0.75);
+@media (min-width: 1100px){
+  :root {
+    --menuColor: rgb(244, 241, 241);
+    --font: "Montserrat", sans-serif;
+    --fontSizeTittle: 30px;
+    --addMenuWidth: 900px;
+    --addMenuHeight: 600px;
+    --instanceOnHoverColor: rgb(108, 108, 108);
+    --instanceFontSize: 18px;
+    --circleDiameter: 60px;
+    --importMenuHeight: 200px;
+    --importMenuWidth: 400px;
+    --menuShadow: box-shadow: 13px 9px 77px -6px rgba(0, 0, 0, 0.75);
+    --selectDivOptWidth : 140px;
+    --selectDivOptFontSize: 14px;
+    --selectDivWidth: 220px;
+    --selectDivFontSize: 16px;
+    --selectDivWidth: 220px;
+    --selectDivFontSize: 16px;
+    --selectDivHeight: 40px;
+    --dateWidth: 180px;
+    --amountWidth: 180px;
+    --amountFontSize: 14px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1100px){
+  :root {
+    --menuColor: rgb(244, 241, 241);
+    --font: "Montserrat", sans-serif;
+    --fontSizeTittle: 20px;
+    --addMenuWidth: 600px;
+    --addMenuHeight: 500px;
+    --instanceOnHoverColor: rgb(108, 108, 108);
+    --instanceFontSize: 14px;
+    --circleDiameter: 40px;
+    --importMenuHeight: 200px;
+    --importMenuWidth: 400px;
+    --menuShadow: box-shadow: 13px 9px 77px -6px rgba(0, 0, 0, 0.75);
+    --selectDivOptWidth : 70px;
+    --selectDivOptFontSize: 10px;
+    --selectDivWidth: 220px;
+    --selectDivFontSize: 16px;
+    --selectDivWidth: 220px;
+    --selectDivFontSize: 16px;
+    --selectDivHeight: 40px;
+    --dateWidth: 180px;
+    --amountWidth: 180px;
+    --amountFontSize: 14px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1100px){
+  :root {
+    --menuColor: rgb(244, 241, 241);
+    --font: "Montserrat", sans-serif;
+    --fontSizeTittle: 20px;
+    --addMenuWidth: 600px;
+    --addMenuHeight: 500px;
+    --instanceOnHoverColor: rgb(108, 108, 108);
+    --instanceFontSize: 14px;
+    --circleDiameter: 40px;
+    --importMenuHeight: 200px;
+    --importMenuWidth: 400px;
+    --menuShadow: box-shadow: 13px 9px 77px -6px rgba(0, 0, 0, 0.75);
+    --selectDivOptWidth : 70px;
+    --selectDivOptFontSize: 10px;
+    --selectDivWidth: 220px;
+    --selectDivFontSize: 16px;
+    --selectDivWidth: 220px;
+    --selectDivFontSize: 16px;
+    --selectDivHeight: 40px;
+    --dateWidth: 180px;
+    --amountWidth: 180px;
+    --amountFontSize: 14px;
+  }
+}
+
+@media (max-width: 600px){
+  :root {
+    --menuColor: rgb(244, 241, 241);
+    --font: "Montserrat", sans-serif;
+    --fontSizeTittle: 15px;
+    --addMenuWidth: 500px;
+    --addMenuHeight: 400px;
+    --instanceOnHoverColor: rgb(108, 108, 108);
+    --instanceFontSize: 10px;
+    --circleDiameter: 20px;
+    --importMenuHeight: 200px;
+    --importMenuWidth: 400px;
+    --menuShadow: box-shadow: 13px 9px 77px -6px rgba(0, 0, 0, 0.75);
+    --selectDivOptWidth : 30px;
+    --selectDivOptFontSize: 10px;
+    --selectDivWidth: 220px;
+    --selectDivFontSize: 16px;
+    --selectDivHeight: 40px;
+    --dateWidth: 180px;
+    --amountWidth: 180px;
+    --amountFontSize: 14px;
+  }
+}
+
+@media(max-height: 600px){
+  :root{
+    --instanceFontSize: 8px;
+    --circleDiameter: 20px;
+    --addMenuWidth: 400px;
+    --addMenuHeight: 200px;
+    --fontSizeTittle: 15px;
+    --selectDivWidth: 100px;
+    --selectDivFontSize: 8px;
+    --selectDivOptWidth : 30px;
+    --selectDivOptFontSize: 8px;
+    --selectDivWidth: 100px;
+    --selectDivFontSize: 8px;
+    --selectDivHeight: 20px;
+    --dateWidth: 100px;
+    --amountWidth: 100px;
+    --amountFontSize: 10px;
+  }
 }
 
 .data-container-options {
@@ -363,18 +471,19 @@
 
 .selectdiv {
   position: relative;
-  width: 220px;
+  width: var(--selectDivWidth);
   margin: 10px 0;
 }
 
 .selectdiv select {
+  height: var(--selectDivHeight); 
+  line-height: var(--selectDivHeight); 
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-
   width: 100%;
-  padding: 12px 40px 12px 15px;
-  font-size: 16px;
+  padding: 0 40px 0 15px;
+  font-size: var(--selectDivFontSize);
   font-weight: 500;
   border: 2px solid #ccc;
   border-radius: 12px;
@@ -404,10 +513,9 @@
   pointer-events: none;
 }
 
-
 .selectdivOpt {
   position: relative;
-  width: 140px;
+  width: var(--selectDivOptWidth);
   margin: 10px 0;
 }
 
@@ -418,7 +526,7 @@
 
   width: 100%;
   padding: 8px 30px 8px 5px;
-  font-size: 14px;
+  font-size: var(--selectDivOptFontSize);
   border: none;
   border-bottom: 2px solid #ccc;
   border-radius: 0;
@@ -450,7 +558,7 @@
 
 .amountWrapper {
   position: relative;
-  width: 180px;
+  width: var(--amountWidth);
   display: flex;
   align-items: center;
 }
@@ -459,14 +567,14 @@
   position: absolute;
   right: 8px;
   color: #666;
-  font-size: 14px;
+  font-size: var(--amountFontSize);
   pointer-events: none;
 }
 
 .amountInput {
   width: 100%;
   padding: 8px 25px 8px 10px;
-  font-size: 14px;
+  font-size: var(--amountFontSize);
   border: none;
   border-bottom: 2px solid #ccc;
   background-color: transparent;
@@ -489,9 +597,9 @@
 
 
 .dateInput {
-  width: 180px;              
+  width: var(--dateWidth);   
   padding: 8px 10px;         
-  font-size: 14px;
+  font-size: var(--amountFontSize);
   border: none;
   border-bottom: 2px solid #ccc;  
   background-color: transparent;

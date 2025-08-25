@@ -31,7 +31,6 @@ function App() {
     "dateDescending-utilities"
   );
   const [filterAuthor, setFilterAuthor] = useState("all-authors");
-
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
   const [amount, setAmount] = useState("");
@@ -222,7 +221,7 @@ function App() {
   }
 
   function handleDeleteInstance(id) {
-    if (id == "") return;
+    if (id === "") return;
 
     setInstances((prev) => {
       const newInstances = {};
