@@ -3,6 +3,7 @@
 ## Table of Contents
 - [About](#about)
 - [Installation](#installation)
+  -[Prerequisites](#prerequisites)
 - [Usage](#usage)
 - [License](#license)
 
