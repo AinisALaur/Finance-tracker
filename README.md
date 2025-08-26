@@ -3,7 +3,7 @@
 ## Table of Contents
 - [About](#about)
 - [Installation](#installation)
-  -[Prerequisites](#prerequisites)
+  - [Prerequisites](#prerequisites)
 - [Usage](#usage)
 - [License](#license)
 
@@ -29,11 +29,13 @@ The **Utilities** and **Food** sections can be:
 ### Prerequisites
 Make sure you have Node.js (project coded using v22.17.0) and npm installed:
 
+### Check current versiom
 ```bash
 node -v
 npm -v
 ```
 
+### Install
 ```bash
 # clone the repo
 git clone https://github.com/AinisALaur/Finance-tracker.git
