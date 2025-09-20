@@ -401,9 +401,13 @@ function App() {
             {instances.utilities
               .slice()
               .filter((inst) =>
-                ["hot-water", "cold-water", "electricity", "gas"].includes(
-                  filterUtilities
-                )
+                [
+                  "hot-water",
+                  "cold-water",
+                  "electricity",
+                  "gas",
+                  "admeo",
+                ].includes(filterUtilities)
                   ? inst.name === filterUtilities
                   : true
               )
@@ -439,9 +443,17 @@ function App() {
             {instances.food
               .slice()
               .filter((inst) => {
-                const nameMatch = ["lidl", "maxima", "iki", "other"].includes(
-                  filterFood
-                )
+                const nameMatch = [
+                  "lidl",
+                  "maxima",
+                  "iki",
+                  "vynoteka",
+                  "ikea",
+                  "depo",
+                  "senukai",
+                  "restaurant",
+                  "other",
+                ].includes(filterFood)
                   ? inst.name === filterFood
                   : true;
 

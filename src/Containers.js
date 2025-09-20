@@ -33,6 +33,7 @@ function DataContainerOptionsUtilities({
             <option value="cold-water">Cold water</option>
             <option value="electricity">Electricity</option>
             <option value="gas">Gas</option>
+            <option value="admeo">Admeo</option>
           </select>
         </div>
 
@@ -71,6 +72,11 @@ function DataContainerOptionsFood({ setFilterFood, setSortFood, setAuthor }) {
             <option value="lidl">Lidl</option>
             <option value="maxima">Maxima</option>
             <option value="iki">IKI</option>
+            <option value="ikea">Ikea</option>
+            <option value="depo">Depo</option>
+            <option value="vynoteka">Vynoteka</option>
+            <option value="senukai">senukai</option>
+            <option value="restaurant">Restaurant</option>
             <option value="other">Other</option>
           </select>
         </div>
