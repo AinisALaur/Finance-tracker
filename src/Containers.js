@@ -213,7 +213,7 @@ function AddMenu({
               <select value={category} onChange={handleChangeCategory}>
                 <option value="">--Not selected--</option>
                 <option value="utilities">Utilities</option>
-                <option value="food">Food</option>
+                <option value="food">Shopping</option>
               </select>
             </div>
           </div>
@@ -230,6 +230,11 @@ function AddMenu({
                   <option value="lidl">Lidl</option>
                   <option value="maxima">Maxima</option>
                   <option value="iki">IKI</option>
+                  <option value="restaurant">Restaurant</option>
+                  <option value="depo">Depo</option>
+                  <option value="ikea">Ikea</option>
+                  <option value="vynoteka">Vynoteka</option>
+                  <option value="senukai">Senukai</option>
                   <option value="other">Other</option>
                 </select>
               </div>
@@ -249,6 +254,7 @@ function AddMenu({
                   <option value="cold-water">Cold water</option>
                   <option value="electricity">Electricity</option>
                   <option value="gas">Gas</option>
+                  <option value="admeo">Admeo</option>
                 </select>
               </div>
             </div>
@@ -369,6 +375,11 @@ function AddMenu({
           author &&
           amount &&
           subCategory &&
+          !editModeOn) ||
+        (category === "utilities" &&
+          date &&
+          amount &&
+          subCategory === "admeo" &&
           !editModeOn) ? (
           <div className="add-menu-footer">
             <button

@@ -332,6 +332,31 @@
   );
 }
 
+.restaurant{
+  background: #3F5EFB;
+  background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+}
+
+.depo{
+  background: #9b2a2a;
+  background: linear-gradient(90deg, rgba(155, 42, 42, 1) 0%, rgb(123, 123, 123) 100%);
+}
+
+.ikea{
+ background: #0005A1;
+background: linear-gradient(357deg, rgba(0, 5, 161, 1) 25%, rgba(255, 247, 0, 1) 100%);
+}
+
+.vynoteka{
+  background: #ffffff;
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(156, 0, 31, 1) 100%);
+}
+
+.senukai{
+  background: #660000;
+  background: linear-gradient(90deg, rgba(102, 0, 0, 1) 0%, rgba(255, 208, 0, 1) 100%);
+}
+
 .other {
   background: #fd1d1d;
   background: linear-gradient(
@@ -339,6 +364,11 @@
     rgba(253, 29, 29, 1) 50%,
     rgba(252, 176, 69, 1) 100%
   );
+}
+
+.admeo{
+  background: #020024;
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(255, 208, 0, 1) 100%);
 }
 
 .hot-water {
