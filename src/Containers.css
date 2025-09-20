@@ -357,6 +357,11 @@ background: linear-gradient(357deg, rgba(0, 5, 161, 1) 25%, rgba(255, 247, 0, 1)
   background: linear-gradient(90deg, rgba(102, 0, 0, 1) 0%, rgba(255, 208, 0, 1) 100%);
 }
 
+.gas-95{
+  background: #00701c;
+  background: linear-gradient(90deg, rgba(0, 112, 28, 1) 0%, rgba(72, 255, 5, 1) 100%);
+}
+
 .other {
   background: #fd1d1d;
   background: linear-gradient(

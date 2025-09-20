@@ -77,6 +77,7 @@ function DataContainerOptionsFood({ setFilterFood, setSortFood, setAuthor }) {
             <option value="vynoteka">Vynoteka</option>
             <option value="senukai">senukai</option>
             <option value="restaurant">Restaurant</option>
+            <option value="gas-95">Gas-95</option>
             <option value="other">Other</option>
           </select>
         </div>
@@ -241,6 +242,7 @@ function AddMenu({
                   <option value="ikea">Ikea</option>
                   <option value="vynoteka">Vynoteka</option>
                   <option value="senukai">Senukai</option>
+                  <option value="gas-95">Gas-95</option>
                   <option value="other">Other</option>
                 </select>
               </div>
