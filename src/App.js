@@ -452,6 +452,7 @@ function App() {
                   "depo",
                   "senukai",
                   "restaurant",
+                  "gas-95",
                   "other",
                 ].includes(filterFood)
                   ? inst.name === filterFood

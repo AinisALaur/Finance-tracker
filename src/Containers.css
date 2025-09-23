@@ -315,12 +315,8 @@
 }
 
 .maxima {
-  background: #0098d4;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 152, 212, 1) 0%,
-    rgba(224, 0, 0, 1) 100%
-  );
+ background: #d90000;
+background: linear-gradient(45deg,rgba(217, 0, 0, 1) 50%, rgba(16, 100, 179, 1) 29%);
 }
 
 .iki {
@@ -343,8 +339,8 @@
 }
 
 .ikea{
- background: #0005A1;
-background: linear-gradient(357deg, rgba(0, 5, 161, 1) 25%, rgba(255, 247, 0, 1) 100%);
+background: #FFDA1A;
+background: radial-gradient(circle,rgba(255, 218, 26, 1) 45%, rgba(0, 87, 173, 1) 40%);
 }
 
 .vynoteka{
