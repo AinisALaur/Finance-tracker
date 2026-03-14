@@ -1,4 +1,5 @@
 # Finance tracker
+![Program Screenshot](demo.png)
 
 ## Table of Contents
 - [About](#about)
